@@ -6,22 +6,55 @@ import QtQuick.Controls 2.12
  * Desc: 圆角按钮
  */
 Item {
-    id: roundButton
-    //
-    property var areaWidth: 120
-    property var areaHeight: 80
+    id: roundBtnId
 
-    // 背景颜色
-    property var bkcolor: "#252525"
+    // 单击信号
+    signal click();
 
-    // 圆角值
-    property var roundValues: 10
+    // 按钮宽
+    property var btnWidth: 98
+    // 按钮高
+    property var btnHeight: 42
+    // 按钮背景颜色
+    property var btnBkColor: "#F5F5F5"
+    // 按钮圆角值
+    property var btnRoundValue: 6
 
+    // 按钮文本
+    property var btnText: "按钮"
+    // 按钮文本颜色
+    property var btnTextColor: "#151515"
+    // 字休大小
+    property var btnFontSize: 12
+
+    // 按钮背景
     Rectangle {
-        width: areaWidth
-        height: areaHeight
-        color: bkcolor
-        radius: roundValues
+        id: btnBkId
+        width: btnWidth
+        height: btnHeight
+        color: btnBkColor
+        radius: btnRoundValue
+
+        // 按钮文本
+        Text {
+            id: btnTextId
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+            }
+            color: btnTextColor
+            font.pointSize: btnFontSize
+            text: btnText
+        }
+
+        // 鼠标事件
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+                console.log("RoundButton onclicked.");
+                click();
+            }
+        }
     }
 
 }

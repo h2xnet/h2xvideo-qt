@@ -26,13 +26,13 @@ Rectangle {
         text: "Hello, World!, home!"
     }
 
-    MouseArea {
+    /*MouseArea {
         anchors.fill: parent
         onClicked: {
             console.log("HomeView.qml onClicked.")
             mainViewHandler.routerPageSet("HomeView", "login", "");
         }
-    }
+    }*/
 
 
 }

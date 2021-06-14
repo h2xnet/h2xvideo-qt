@@ -10,5 +10,7 @@
         <file>qmluilib/list/FlowList.qml</file>
         <file>qmluilib/bar/TitleBar.qml</file>
         <file>qmluilib/button/RoundButton.qml</file>
+        <file>qmluilib/header/SearchBox.qml</file>
+        <file>qmluilib/header/InputBox.qml</file>
     </qresource>
 </RCC>
