@@ -11,9 +11,9 @@ Rectangle {
     property var pageId : ""
     property var pageParam : ""
 
-    width: 200
-    height: 100
-    color: "red"
+    width: parent.width
+    height: parent.height
+    color: "white"
 
     Text {
         anchors.centerIn: parent

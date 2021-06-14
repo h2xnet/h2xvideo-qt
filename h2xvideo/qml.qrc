@@ -4,5 +4,11 @@
         <file>HomeView.qml</file>
         <file>LoginView.qml</file>
         <file>qmluilib/router/RouterStackView.qml</file>
+        <file>qmluilib/header/SearchHeader.qml</file>
+        <file>qmluilib/bar/NavBar.qml</file>
+        <file>qmluilib/bar/ToolBar.qml</file>
+        <file>qmluilib/list/FlowList.qml</file>
+        <file>qmluilib/bar/TitleBar.qml</file>
+        <file>qmluilib/button/RoundButton.qml</file>
     </qresource>
 </RCC>
