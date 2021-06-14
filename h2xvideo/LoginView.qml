@@ -8,16 +8,12 @@ import module.h2xvideo.mainviewhandler 1.0
 Rectangle {
     id: loginView
     
-    property var pageName : ""
+    property var pageId : ""
     property var pageParam : ""
 
     width: 200
     height: 100
     color: "red"
-
-    MainViewHandler {
-        id: mainViewHandler
-    }
 
     Text {
         anchors.centerIn: parent

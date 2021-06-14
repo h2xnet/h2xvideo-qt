@@ -6,7 +6,7 @@
 #include <qstring.h>
 #include <QtQml>
 
-class MainViewHandler : public QObject/*, public h2x::View*/ {
+class MainViewHandler : public QObject, public h2x::View {
     Q_OBJECT
 public:
     // 以单例的方式提供给QML使用
@@ -19,7 +19,7 @@ public:
      * FunctionName: routerPageSet
      * Desc: 设置路由页面
      */
-    Q_INVOKABLE void routerPageSet(QString sender, QString pageName, QString pageParam = QString(""));
+    Q_INVOKABLE void routerPageSet(QString sender, QString pageId, QString pageParam = QString(""));
 
 
 public:
@@ -34,10 +34,10 @@ Q_SIGNALS:
      * Author: zfs
      * Date: 2021-06-12 22:35
      * @sender: 发送者
-     * @pageName: 页面名称
+     * @pageId: 页面ID
      * @pageParam: 页面参数，可以为空，
      */
-    void routerPageChanged(QString sender, QString pageName, QString pageParam = QString(""));
+    void routerPageChanged(QString sender, QString pageId, QString pageParam = QString(""));
 
     // 
 public slots:

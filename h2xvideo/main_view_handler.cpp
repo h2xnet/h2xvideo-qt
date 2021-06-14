@@ -2,12 +2,17 @@
 
 #include "h2xvideo/app.h"
 
+namespace {
+
+static MainViewHandler* g_instance_ = NULL;
+
+}
+
 MainViewHandler* MainViewHandler::qmlAttachedProperties(QObject *object) {
-    static MainViewHandler* inst = NULL;
-    if (!inst) {
-        inst = new MainViewHandler(object);
+    if (!g_instance_) {
+        g_instance_ = new MainViewHandler(object);
     }
-    return inst;
+    return g_instance_;
 }
 
 MainViewHandler::MainViewHandler(QObject* parent) : QObject(parent) {
@@ -19,13 +24,13 @@ MainViewHandler::~MainViewHandler() {
 
 }
 
-void MainViewHandler::routerPageSet(QString sender, QString pageName, QString pageParam) {
+void MainViewHandler::routerPageSet(QString sender, QString pageId, QString pageParam) {
 
-    getApp().getLogger().PrintLogW(h2x::Logger::ContentType::Info, L"MainViewHandler::routerPageSet sender:%s pageName:%s, pageParam:%s\n",
+    getApp().getLogger().PrintLogW(h2x::Logger::ContentType::Info, L"MainViewHandler::routerPageSet sender:%s pageId:%s, pageParam:%s\n",
         reinterpret_cast<const wchar_t*>(sender.utf16()),
-        reinterpret_cast<const wchar_t*>(pageName.utf16()),
+        reinterpret_cast<const wchar_t*>(pageId.utf16()),
         reinterpret_cast<const wchar_t*>(pageParam.utf16()));
 
     // 通知页面改变
-    emit routerPageChanged(sender, pageName, pageParam);
+    emit routerPageChanged(sender, pageId, pageParam);
 }

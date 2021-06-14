@@ -19,12 +19,8 @@ Window {
     //
     // RouterStackView : 路由
     //
-    //RouterStackView {
-    //    id: routerStackView
-    //}
-    StackView {
-        id: routerStackView
-        anchors.fill: parent
+    RouterStackView {
+        id: routerStack
     }
 
     //
@@ -33,7 +29,7 @@ Window {
     HomeView {
         id: homeView
         visible: false
-        pageName: "home"
+        pageId: "home"
         pageParam: ""
     }
 
@@ -43,7 +39,7 @@ Window {
     LoginView {
         id: loginView
         visible: false
-        pageName: "login"
+        pageId: "login"
         pageParam: ""
     }
 
@@ -53,65 +49,28 @@ Window {
         mainViewHandler.routerPageSet("main", "home", "");
     }
 
-    Connections {
-        target: mainViewHandler
-        onRouterPageChanged: function(sender, pageName, pageParam) {
-            console.log("main.qml MainViewHandler.onRouterPageChanged.");
-            let paramObj = {
-                sender: sender,
-                pageName: pageName,
-                pageParam: pageParam
-            }
-            console.log("main.qml MainViewHandler.onRouterPageChanged params: " + JSON.stringify(paramObj));
-
-            if (pageName === "home") {
-                routerStackView.push(loginView)
-            }
-            else if (pageName === "login") {
-                routerStackView.push(homeView)
-            }
-        }
-    }
-
     // 信号
     MainViewHandler {
         id: mainViewHandler
-        /*onRouterPageChanged : function(sender, pageName, pageParam) {
+        onRouterPageChanged : function(sender, pageId, pageParam) {
             console.log("main.qml MainViewHandler.onRouterPageChanged.");
             let paramObj = {
                 sender: sender,
-                pageName: pageName,
+                pageId: pageId,
                 pageParam: pageParam
             }
             console.log("main.qml MainViewHandler.onRouterPageChanged params: " + JSON.stringify(paramObj));
 
-            if (pageName === "home") {
-                routerStackView.push(loginView)
+            if (pageId === "home") {
+                routerStack.setReplece(homeView, pageId, pageParam);
             }
-            else if (pageName === "login") {
-                routerStackView.push(homeView)
+            else if (pageId === "login") {
+                routerStack.setReplece(loginView, pageId, pageParam);
             }
 
-        }*/
+        }
 
     }
 
-    /*MainViewHandler.onRouterPageChanged : function(sender, pageName, pageParam) {
-    console.log("main.qml MainViewHandler.onRouterPageChanged.");
-    let paramObj = {
-        sender: sender,
-        pageName: pageName,
-        pageParam: pageParam
-    }
-    console.log("main.qml MainViewHandler.onRouterPageChanged params: " + JSON.stringify(paramObj));
-
-    if (pageName === "home") {
-        routerStackView.push(loginView)
-    }
-    else if (pageName === "login") {
-        routerStackView.push(homeView)
-    }
-
-    }*/
 
 }
