@@ -1,6 +1,8 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.12
 
+import "qrc:/qmluilib/bar"
+import "qrc:/qmluilib/box"
 import "qrc:/qmluilib/button"
 import "qrc:/qmluilib/header"
 
@@ -13,24 +15,30 @@ Item {
     id: searchWin
 
     // 背景颜色
-    property var areaBkColor: "blue"
+    property var boxBkColor: "blue"
 
     // 宽
-    property var areaWidth: parent.width
+    property var boxWidth: parent.width
     // 高
-    property var areaHeight: 120
+    property var boxHeight: 120
 
-    width: areaWidth
-    height: areaHeight
+    width: boxWidth
+    height: boxHeight
 
     // 背景区域
     Rectangle {
         id: bkWin
         width: parent.width
         height: parent.height
-        color: areaBkColor
+        color: boxBkColor
     }
 
+    // 标题栏
+    TitleBar {
+        id: titleBarId
+
+        width: parent.width
+    }
 
     // 搜索区域
     SearchBox {
@@ -38,7 +46,7 @@ Item {
 
         anchors {
             top: parent.top
-            topMargin: 30
+            topMargin: 60
             right: parent.right
             rightMargin: 350
         }

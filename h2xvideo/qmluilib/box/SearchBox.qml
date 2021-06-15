@@ -16,13 +16,13 @@ Item {
     signal searchBtnClick(var keyword);
 
     // 搜索区域宽
-    property var areaWidth: 280
+    property var boxWidth: 280
     // 搜索区域高
-    property var areaHeight: 34
+    property var boxHeight: 34
     // 搜索区域背景色
-    property var areaBkColor: "#F5F5F5"
+    property var boxBkColor: "#F5F5F5"
     // 搜索区域圆角值
-    property var areaRoundValue: 4
+    property var boxRoundValue: 5
 
     // 搜索按钮
     property var searchBtnWidth: 60
@@ -35,47 +35,37 @@ Item {
     property var spaceWidth: 10
 
     // 边距大小
-    property var paddingLeft: 5
-    property var paddingTop: 2
-    property var paddingRight: 5
-    property var paddingBottom: 2
+    property var padLeft: 5
+    property var padTop: 2
+    property var padRight: 5
+    property var padBottom: 2
 
     // 背景框
     Rectangle {
-        width: areaWidth
-        height: areaHeight
-        color: areaBkColor
-        radius: areaRoundValue
+        width: boxWidth
+        height: boxHeight
+        color: boxBkColor
+        radius: boxRoundValue
 
         // 输入区域
-        Rectangle {
-            id: inputArea
+        InputBox {
+            id: searchTextId
+
+            boxWidth: parent.width - spaceWidth
+            boxHeight: parent.height
+            roundValue: boxRoundValue
+            inputFontSize: inputTextFontSize
 
             anchors {
                 left: parent.left
                 leftMargin: 0
                 top: parent.top
                 topMargin: 0
+                verticalCenter: parent.verticalCenter
             }
-            width: areaWidth - searchBtnWidth - spaceWidth
-            height: parent.height
-            color: "transparent"
 
-            // 文本输入框
-            TextInput {
-                id: searchTextId
-
-                anchors {
-                    left: parent.left
-                    leftMargin: paddingLeft
-                    //top: parent.top
-                    //topMargin: paddingTop
-                    verticalCenter: parent.verticalCenter
-                }
-                width: parent.width - paddingLeft - spaceWidth
-                font.pointSize: inputTextFontSize
-                color: "#A5A5A5"
-                text: ""
+            onInputTextChange: function(text) {
+                console.log("SearchBox searchTextId onInputTextChange : " + text);
             }
         }
 
@@ -85,9 +75,9 @@ Item {
 
             anchors {
                 top: parent.top
-                topMargin: paddingTop
+                topMargin: padTop
                 right: parent.right
-                rightMargin: searchBtnWidth + paddingRight
+                rightMargin: searchBtnWidth + padRight
             }
 
             btnWidth: searchBtnWidth
@@ -97,7 +87,7 @@ Item {
             // 搜索事件
             onClick: {
                 console.log("SearchBox onClick.")
-                searchBtnClick(searchTextId.text)
+                searchBtnClick(searchTextId.getInputText())
             }
         }
 

@@ -4,6 +4,8 @@ import QtQuick.Controls 2.12
 /*
  * ClassName: RoundButton
  * Desc: 圆角按钮
+ * Author: zfs
+ * Date: 2021-06-14 21:23
  */
 Item {
     id: roundBtnId

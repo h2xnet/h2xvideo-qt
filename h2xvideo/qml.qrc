@@ -10,7 +10,20 @@
         <file>qmluilib/list/FlowList.qml</file>
         <file>qmluilib/bar/TitleBar.qml</file>
         <file>qmluilib/button/RoundButton.qml</file>
-        <file>qmluilib/header/SearchBox.qml</file>
-        <file>qmluilib/header/InputBox.qml</file>
+        <file>qmluilib/box/InputBox.qml</file>
+        <file>qmluilib/box/SearchBox.qml</file>
+        <file>qmluilib/imgs/logo/logo1.jpg</file>
+        <file>qmluilib/imgs/logo/logo2.jpg</file>
+        <file>qmluilib/imgs/logo/logo3.png</file>
+        <file>qmluilib/imgs/button/btn_close_hovered.png</file>
+        <file>qmluilib/imgs/button/btn_close_normal.png</file>
+        <file>qmluilib/imgs/button/btn_close_pressed.png</file>
+        <file>qmluilib/imgs/button/btn_max_hovered.png</file>
+        <file>qmluilib/imgs/button/btn_max_normal.png</file>
+        <file>qmluilib/imgs/button/btn_max_pressed.png</file>
+        <file>qmluilib/imgs/button/btn_min_hovered.png</file>
+        <file>qmluilib/imgs/button/btn_min_normal.png</file>
+        <file>qmluilib/imgs/button/btn_min_pressed.png</file>
+        <file>qmluilib/button/ImageButton.qml</file>
     </qresource>
 </RCC>
