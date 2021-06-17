@@ -12,6 +12,8 @@ import "qrc:/qmluilib/button"
 Item {
     id: titleBar
 
+    signal systemBtnClick(var btnId);
+
     // 标题栏背景颜色
     property var boxBkColor: "white"
     // 标题栏高
@@ -24,6 +26,9 @@ Item {
     property var titleTextColor: "#000000"
     // 标题栏字体大小
     property var titleTextFontSize: 18
+
+    width: parent.width
+    height: boxHeight
 
     // 背景区域
     Rectangle {
@@ -66,12 +71,14 @@ Item {
             id: sysMenuBoxId
 
             anchors {
+                top: parent.top
+                topMargin: Math.ceil((parent.height - 20) / 2)
                 right: parent.right
                 rightMargin: 10
             }
 
-            width: 110
-            height: parent.height
+            width: 80
+            height: 20
             color: "transparent"
 
             Row {
@@ -80,14 +87,15 @@ Item {
                 ImageButton {
                     id: minBtnId
 
-                    btnWidth: 30
-                    btnHeight: 30
+                    btnWidth: 20
+                    btnHeight: 20
                     normalImgUrl: "qrc:/qmluilib/imgs/button/btn_min_normal.png"
                     hoveredImgUrl: "qrc:/qmluilib/imgs/button/btn_min_hovered.png"
                     pressedImgUrl: "qrc:/qmluilib/imgs/button/btn_min_pressed.png"
 
                     onClick: {
                         console.log("TitleBar minBtn onClick.");
+                        systemBtnClick("system_btn_min");
                     }
                 }
 
@@ -95,14 +103,15 @@ Item {
                 ImageButton {
                     id: maxBtnId
 
-                    btnWidth: 30
-                    btnHeight: 30
+                    btnWidth: 20
+                    btnHeight: 20
                     normalImgUrl: "qrc:/qmluilib/imgs/button/btn_max_normal.png"
                     hoveredImgUrl: "qrc:/qmluilib/imgs/button/btn_max_hovered.png"
                     pressedImgUrl: "qrc:/qmluilib/imgs/button/btn_max_pressed.png"
 
                     onClick: {
                         console.log("TitleBar maxBtn onClick.");
+                        systemBtnClick("system_btn_max");
                     }
                 }
 
@@ -110,14 +119,15 @@ Item {
                 ImageButton {
                     id: closeBtnId
 
-                    btnWidth: 30
-                    btnHeight: 30
+                    btnWidth: 20
+                    btnHeight: 20
                     normalImgUrl: "qrc:/qmluilib/imgs/button/btn_close_normal.png"
                     hoveredImgUrl: "qrc:/qmluilib/imgs/button/btn_close_hovered.png"
                     pressedImgUrl: "qrc:/qmluilib/imgs/button/btn_close_pressed.png"
 
                     onClick: {
                         console.log("TitleBar closeBtn onClick.");
+                        systemBtnClick("system_btn_close");
                     }
                 }
 

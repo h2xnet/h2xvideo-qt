@@ -13,8 +13,11 @@ Window {
     flags: Qt.Dialog | Qt.FramelessWindowHint
     x: 0
     y: 0
-    width: Screen.desktopAvailableWidth
-    height: Screen.desktopAvailableHeight
+    //width: Screen.desktopAvailableWidth
+    //height: Screen.desktopAvailableHeight
+
+    width: 800
+    height: 600
 
     //
     // RouterStackView : 路由
@@ -31,6 +34,13 @@ Window {
         visible: false
         pageId: "home"
         pageParam: ""
+    }
+
+    function winIsMax(winId) {
+        if (winId.width >= winId.maximumWidth && winid>height >= winId.maximumHeight) {
+            return true;
+        }
+        return false;
     }
 
     //
@@ -52,14 +62,16 @@ Window {
     // 信号
     MainViewHandler {
         id: mainViewHandler
-        onRouterPageChanged : function(sender, pageId, pageParam) {
-            console.log("main.qml MainViewHandler.onRouterPageChanged.");
+
+        // 页面改变事件
+        onRouterPageChangeEvent : function(sender, pageId, pageParam) {
+            console.log("main.qml MainViewHandler.onRouterPageChangeEvent.");
             let paramObj = {
                 sender: sender,
                 pageId: pageId,
                 pageParam: pageParam
             }
-            console.log("main.qml MainViewHandler.onRouterPageChanged params: " + JSON.stringify(paramObj));
+            console.log("main.qml MainViewHandler.onRouterPageChangeEvent params: " + JSON.stringify(paramObj));
 
             if (pageId === "home") {
                 routerStack.setReplece(homeView, pageId, pageParam);
@@ -68,6 +80,26 @@ Window {
                 routerStack.setReplece(loginView, pageId, pageParam);
             }
 
+        }
+
+        // app最小化事件
+        onMinAppEvent : function(sender) {
+            console.log("main.qml MainViewHandler.onMinAppEvent sender : " + sender);
+
+            mainWin.showMinimized();
+        }
+
+        // app最大化事件
+        onMaxAppEvent: function(sender) {
+            console.log("main.qml MainViewHandler.onMaxAppEvent sender : " + sender);
+            console.log("------- isMax : " + winIsMax(mainWin))
+
+            if (winIsMax(mainWin)) {
+                mainWin.showNormal();
+            }
+            else {
+                mainWin.showMaximized()
+            }
         }
 
     }

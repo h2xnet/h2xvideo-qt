@@ -32,5 +32,14 @@ void MainViewHandler::routerPageSet(QString sender, QString pageId, QString page
         reinterpret_cast<const wchar_t*>(pageParam.utf16()));
 
     // 通知页面改变
-    emit routerPageChanged(sender, pageId, pageParam);
+    emit routerPageChangeEvent(sender, pageId, pageParam);
+}
+
+void MainViewHandler::closeApp(QString sender, int exitCode) {
+    // 关闭APP
+    getApp().getLogger().PrintLogW(h2x::Logger::ContentType::Info,
+                                   L" MainViewHandler::closeApp sender:%s exitCode:%d\n",
+                                   reinterpret_cast<const wchar_t*>(sender.utf16()), exitCode);
+
+    exit(exitCode);
 }

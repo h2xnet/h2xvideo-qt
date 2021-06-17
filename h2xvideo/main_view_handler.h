@@ -21,6 +21,16 @@ public:
      */
     Q_INVOKABLE void routerPageSet(QString sender, QString pageId, QString pageParam = QString(""));
 
+    /*
+     * FunctionName: closeApp
+     * Desc: 关闭APP
+     * Author: zfs
+     * Date: 2021-06-17 22:09
+     * @sender: 发送者
+     * @exitCode: 关闭代码
+     */
+    Q_INVOKABLE void closeApp(QString sender, int exitCode);
+
 
 public:
 
@@ -29,15 +39,33 @@ Q_SIGNALS:
 //signals:
     // 信号列表
     /*
-     * FunctionName: routerPageChanged
-     * Desc: 路由页面发生改变
+     * FunctionName: routerPageChangeEvent
+     * Desc: 路由页面改变事件
      * Author: zfs
      * Date: 2021-06-12 22:35
      * @sender: 发送者
      * @pageId: 页面ID
      * @pageParam: 页面参数，可以为空，
      */
-    void routerPageChanged(QString sender, QString pageId, QString pageParam = QString(""));
+    void routerPageChangeEvent(QString sender, QString pageId, QString pageParam = QString(""));
+
+    /*
+     * FunctionName: minAppEvent
+     * Desc: 最小化APP事件
+     * Author: zfs
+     * Date: 2021-06-17 23:13
+     * @sender: 发送者
+     */
+    void minAppEvent(QString sender);
+
+    /*
+     * FunctionName: maxAppEvent
+     * Desc: 最大化APP事件
+     * Author: zfs
+     * Date: 2021-06-17 23:13
+     * @sender: 发送者
+     */
+    void maxAppEvent(QString send);
 
     // 
 public slots:

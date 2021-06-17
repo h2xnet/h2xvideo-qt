@@ -20,7 +20,10 @@ Item {
     // 宽
     property var boxWidth: parent.width
     // 高
-    property var boxHeight: 120
+    property var boxHeight: 100
+    // 边距
+    property var padTop: 20
+    property var padRight: 350
 
     width: boxWidth
     height: boxHeight
@@ -28,16 +31,9 @@ Item {
     // 背景区域
     Rectangle {
         id: bkWin
-        width: parent.width
-        height: parent.height
+        width: boxWidth
+        height: boxHeight
         color: boxBkColor
-    }
-
-    // 标题栏
-    TitleBar {
-        id: titleBarId
-
-        width: parent.width
     }
 
     // 搜索区域
@@ -46,9 +42,9 @@ Item {
 
         anchors {
             top: parent.top
-            topMargin: 60
+            topMargin: searchWin.padTop
             right: parent.right
-            rightMargin: 350
+            rightMargin: searchWin.padRight
         }
 
         onSearchBtnClick: function(keyword) {
