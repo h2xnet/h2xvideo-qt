@@ -10,14 +10,11 @@ Window {
     id: mainWin
 
     visible: true
-    flags: Qt.Dialog | Qt.FramelessWindowHint
-    x: 0
-    y: 0
-    //width: Screen.desktopAvailableWidth
-    //height: Screen.desktopAvailableHeight
+    //flags: Qt.Dialog | Qt.FramelessWindowHint
+    width: 1024 //Screen.desktopAvailableWidth
+    height: 668 //Screen.desktopAvailableHeight
 
-    width: 800
-    height: 600
+    title: qsTr("慧行无限视频")
 
     //
     // RouterStackView : 路由
@@ -37,7 +34,7 @@ Window {
     }
 
     function winIsMax(winId) {
-        if (winId.width >= winId.maximumWidth && winid>height >= winId.maximumHeight) {
+        if (winId.width >= Screen.desktopAvailableWidth && winId.height >= Screen.desktopAvailableHeight) {
             return true;
         }
         return false;
@@ -55,6 +52,9 @@ Window {
 
     Component.onCompleted: {
         console.log("main.qml Component.onCompleted.")
+        // 初始化页面
+        homeView.onInit();
+
         // 加载主页
         mainViewHandler.routerPageSet("main", "home", "");
     }
@@ -82,25 +82,6 @@ Window {
 
         }
 
-        // app最小化事件
-        onMinAppEvent : function(sender) {
-            console.log("main.qml MainViewHandler.onMinAppEvent sender : " + sender);
-
-            mainWin.showMinimized();
-        }
-
-        // app最大化事件
-        onMaxAppEvent: function(sender) {
-            console.log("main.qml MainViewHandler.onMaxAppEvent sender : " + sender);
-            console.log("------- isMax : " + winIsMax(mainWin))
-
-            if (winIsMax(mainWin)) {
-                mainWin.showNormal();
-            }
-            else {
-                mainWin.showMaximized()
-            }
-        }
 
     }
 

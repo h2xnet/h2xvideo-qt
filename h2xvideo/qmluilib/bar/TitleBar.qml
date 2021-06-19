@@ -27,6 +27,7 @@ Item {
     // 标题栏字体大小
     property var titleTextFontSize: 18
 
+    // 设置标题栏宽高
     width: parent.width
     height: boxHeight
 
@@ -40,14 +41,14 @@ Item {
         Image {
             id: titleIconId
             source: iconUrl
-            width: 32
-            height: 32
+            width: 24
+            height: 24
 
             anchors {
                 left: parent.left
-                leftMargin: 2
+                leftMargin: Math.ceil((boxHeight - 24) / 2)
                 top: parent.top
-                topMargin: 2
+                topMargin: Math.ceil((boxHeight - 24) / 2)
             }
         } // end 图标
 

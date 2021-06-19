@@ -15,7 +15,7 @@ Item {
     id: searchWin
 
     // 背景颜色
-    property var boxBkColor: "blue"
+    property var boxBkColor: "#0099FF"
 
     // 宽
     property var boxWidth: parent.width

@@ -49,25 +49,8 @@ Q_SIGNALS:
      */
     void routerPageChangeEvent(QString sender, QString pageId, QString pageParam = QString(""));
 
-    /*
-     * FunctionName: minAppEvent
-     * Desc: 最小化APP事件
-     * Author: zfs
-     * Date: 2021-06-17 23:13
-     * @sender: 发送者
-     */
-    void minAppEvent(QString sender);
 
-    /*
-     * FunctionName: maxAppEvent
-     * Desc: 最大化APP事件
-     * Author: zfs
-     * Date: 2021-06-17 23:13
-     * @sender: 发送者
-     */
-    void maxAppEvent(QString send);
 
-    // 
 public slots:
 
 private:

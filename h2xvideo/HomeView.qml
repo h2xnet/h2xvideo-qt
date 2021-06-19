@@ -17,32 +17,62 @@ Rectangle {
     height: parent.height
     color: "white"
 
-    // 标题栏
-    TitleBar {
-        id: titleBarId
-
-        width: parent.width
-
-        onSystemBtnClick: function(sysBtnId) {
-            console.log("HomeView TitleBaronSystemBtnClick sysBtnId : " + sysBtnId)
-
-            onSysMenuClick(sysBtnId);
-        }
-    }
-
     // 搜索头
     SearchHeader {
         id: searchWin
 
         anchors {
-            top: titleBarId.bottom
+            top: parent.top
             topMargin: 0
         }
 
         width: parent.width
-        boxHeight: 80
-        padTop: 15
+        boxHeight: 140
+        padTop: 50
         padRight: 320
+    }
+
+    // 头部导航栏
+    NavBar {
+        id: topNavBarId
+
+        height: 35
+        anchors {
+            top: searchWin.bottom
+            topMargin: 0
+        }
+
+        onNavItemClick: function(itemId) {
+            console.log("HomeView.qml topNavBarId onNavItemClick itemId : " + itemId)
+        }
+    }
+
+    // 底部导航栏
+    Rectangle {
+        id: bottomNavAreaId
+
+        anchors {
+            bottom: homeView.bottom
+            bottomMargin: 10
+        }
+        width: parent.width
+        height: 55
+        color: "transparent"
+
+        NavBar {
+            id: bottomNavBarId
+
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+            }
+
+            width: 180
+            height: parent.height
+
+            onNavItemClick: function(itemId) {
+                console.log("HomeView.qml bottomNavBarId onNavItemClick itemId : " + itemId)
+            }
+        }
     }
 
     Text {
@@ -50,29 +80,59 @@ Rectangle {
         text: "Hello, World!, home!"
     }
 
-    /*MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            console.log("HomeView.qml onClicked.")
-            mainViewHandler.routerPageSet("HomeView", "login", "");
-        }
-    }*/
+    /*
+     * FunctionName: onInit
+     * Desc: 初始化页面
+     * Author: zfs
+     * Date: 2021-06-19 08:48
+     */
+    function onInit() {
+        // 初始化头部导航栏
+        onInitTopNavBar();
 
-    function onSysMenuClick(sysBtnId) {
-        console.log("HomeView onSysMenuClick sysBtnId : " + sysBtnId)
+        // 初始化底部导航栏
+        onInitBottomNavBar();
 
-        if (sysBtnId === "system_btn_min") {
-            // 最小化窗口
-            mainViewHandler.minAppEvent("HomeView System Btn Min");
-        }
-        else if (sysBtnId === "system_btn_max") {
-            // 最大化窗口
-            mainViewHandler.maxAppEvent("HomeView System Btn Max");
-        }
-        else if (sysBtnId === "system_btn_close") {
-            // 关闭窗口
-            mainViewHandler.closeApp("HomeView System Btn Close", 0);
-        }
+    }
+
+    /*
+     * FunctionName: onInitTopNavBar
+     * Desc: 初始化头部导航栏
+     * Author: zfs
+     * Date: 2021-06-19 10:57
+     */
+    function onInitTopNavBar() {
+        let navBts = [
+            {
+                    id: "focus",
+                    title: '关注'
+            },
+            {
+                    id: "hotspot",
+                    title: "热点"
+            },
+            {
+                    id: "nearby",
+                    title: "附近"
+            }
+        ]
+
+        topNavBarId.onStart(navBts, 1, 'left', 0);
+    }
+
+    function onInitBottomNavBar() {
+        let navBts = [
+            {
+                    id: "first",
+                    title: '首页'
+            },
+            {
+                    id: "friends",
+                    title: "朋友"
+            }
+        ]
+
+        bottomNavBarId.onStart(navBts, 0, 'center', 10);
     }
 
 }
