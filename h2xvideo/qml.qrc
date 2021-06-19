@@ -26,5 +26,6 @@
         <file>qmluilib/imgs/button/btn_min_pressed.png</file>
         <file>qmluilib/button/ImageButton.qml</file>
         <file>qmluilib/bar/TextButtonBar.qml</file>
+        <file>navbar_data.js</file>
     </qresource>
 </RCC>

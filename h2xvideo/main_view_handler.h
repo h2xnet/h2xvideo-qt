@@ -31,6 +31,24 @@ public:
      */
     Q_INVOKABLE void closeApp(QString sender, int exitCode);
 
+    /*
+     * FunctionName: getIsLogined
+     * Desc: 获取登录状态
+     * Author: zfs
+     * Date: 2021-06-19 17:57
+     * 返回值：已经登录则返回true，未登录则返回false
+     */
+    Q_INVOKABLE bool getIsLogined();
+
+    /*
+     * FunctionName: setLogined
+     * Desc: 设置登录状态
+     * Author: zfs
+     * Date: 2021-06-19 18:02
+     * 返回值：已经登录则返回true，未登录则返回false
+     */
+    Q_INVOKABLE int setLogined(bool isLogined);
+
 
 public:
 

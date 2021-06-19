@@ -21,8 +21,17 @@ Item {
     property var btnWidth: 80
     // 间隔
     property var btnSpace: 2
+    // 间隔颜色
+    property var btnSpaceColor: "#A8A8A8"
     // 圆角值
     property var roundValue: 10
+    //  字体大小
+    property var fontSize: 14
+    // 字体颜色
+    property var fontDefColor: "#FFFFFF"
+    property var fontSelColor: "#A8A8A8"
+    // 按下状态使能
+    property bool repeatEnable: false
 
     ListModel {
         id: dataListModel
@@ -53,8 +62,8 @@ Item {
 
                         Text {
                             text: title
-                            color: selIndex == index ? "#A8A8A8" : "#FFFFFF"
-                            font.pointSize: 14
+                            color: selIndex == index ? fontSelColor : fontDefColor
+                            font.pointSize: fontSize
                             anchors {
                                 horizontalCenter: parent.horizontalCenter
                                 verticalCenter: parent.verticalCenter
@@ -66,7 +75,7 @@ Item {
 
                             // 单击事件
                             onClicked: {
-                                if (selIndex == index) {
+                                if (!repeatEnable && selIndex == index) {
                                     return;
                                 }
                                 selIndex = index;
@@ -83,9 +92,9 @@ Item {
                     // 分隔线
                     Rectangle {
                         visible: (index < (dataListModel.count - 1))
-                        color: "#A8A8A8"
+                        color: btnSpaceColor
                         width: btnSpace
-                        height: textButtonBarId.height - 12
+                        height: textButtonBarId.height - 16
                         radius: roundValue
                         anchors {
                             verticalCenter: parent.verticalCenter
@@ -99,6 +108,15 @@ Item {
 
     }
 
+    /*
+     * FunctionName: onInit
+     * Desc: 初始化列表
+     * Author: zfs
+     * Date: 2021-06-19 16:07
+     * @list: 所有项数据列表
+     * @curIndex: 当前选中项
+     * @roundValue: 圆角值
+     */
     function onInit(list, curIndex, roundValue) {
         dataListModel.clear();
         datas = [];
@@ -122,6 +140,60 @@ Item {
         // 圆角
         textButtonBarId.roundValue = roundValue;
 
+    }
+
+    /*
+     * FunctionName: onSetFontSize
+     * Desc: 设置字休大小
+     * Author: zfs
+     * Date: 2021-06-19 16:07
+     */
+    function onSetFontSize(fontSize) {
+        textButtonBarId.fontSize = fontSize;
+    }
+
+    /*
+     * FunctionName: onSetFontColor
+     * Desc: 设置字休颜色
+     * Author: zfs
+     * Date: 2021-06-19 16:17
+     * @defColor: 默认时的颜色
+     * @selColor: 选中时的颜色
+     */
+    function onSetFontColor(defColor, selColor) {
+        textButtonBarId.fontDefColor = defColor;
+        textButtonBarId.fontSelColor = selColor;
+    }
+
+    /*
+     * FunctionName: onSetBtnSpaceColor
+     * Desc: 设置按钮分隔线颜色
+     * Author: zfs
+     * Date: 2021-06-19 17:04
+     */
+    function onSetBtnSpaceColor(spaceColor) {
+        textButtonBarId.btnSpaceColor = spaceColor;
+    }
+
+    /*
+     * FunctionName: onSetBtnWidth
+     * Desc: 设置按钮宽
+     * Author: zfs
+     * Date: 2021-06-19 16:46
+     */
+    function onSetBtnWidth(val) {
+        btnWidth = val;
+    }
+
+    /*
+     * FunctionName: onSetRepeatEnable
+     * Desc: 是否启用重复输入状态，启用则不允许重复输入，不启用则允许重复输入
+     * Author: zfs
+     * Date: 2021-06-19 18:13
+     * @enable: 启用标志，true则启用，false则禁用，默认不启用
+     */
+    function onSetRepeatEnable(enable) {
+        repeatEnable = enable;
     }
 
 }

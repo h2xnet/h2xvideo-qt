@@ -8,11 +8,24 @@ import "qrc:/qmluilib/router"
 
 Window {
     id: mainWin
+    // 包含标题栏标志
+    property bool hasTitleBar: true
 
     visible: true
+
     //flags: Qt.Dialog | Qt.FramelessWindowHint
-    width: 1024 //Screen.desktopAvailableWidth
-    height: 668 //Screen.desktopAvailableHeight
+
+    flags: {
+        if (hasTitleBar) {
+            return Qt.Window;
+        }
+        else {
+            return Qt.Window | Qt.FramelessWindowHint
+        }
+    }
+    width: 1024 // Screen.desktopAvailableWidth
+    height: 668 // Screen.desktopAvailableHeight
+
 
     title: qsTr("慧行无限视频")
 
@@ -74,9 +87,11 @@ Window {
             console.log("main.qml MainViewHandler.onRouterPageChangeEvent params: " + JSON.stringify(paramObj));
 
             if (pageId === "home") {
+                mainWin.hasTitleBar = true;
                 routerStack.setReplece(homeView, pageId, pageParam);
             }
             else if (pageId === "login") {
+                mainWin.hasTitleBar = false;
                 routerStack.setReplece(loginView, pageId, pageParam);
             }
 

@@ -43,3 +43,11 @@ void MainViewHandler::closeApp(QString sender, int exitCode) {
 
     exit(exitCode);
 }
+
+bool MainViewHandler::getIsLogined() {
+    return false;
+}
+
+int MainViewHandler::setLogined(bool isLogined) {
+    return 0;
+}

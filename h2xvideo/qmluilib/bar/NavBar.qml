@@ -73,10 +73,12 @@ Item {
         // 圆角
         navBarWin.roundValue = roundValue
 
+        navBarWin.visible = true;
+
     }
 
     function onStop() {
-
+        navBarWin.visible = false;
     }
 
     /*
@@ -111,6 +113,60 @@ Item {
             barBtnsId.anchors.left = navBarWin.left
             barBtnsId.anchors.leftMargin = marginLeft
         }
+    }
+
+    /*
+     * FunctionName: onSetBtnFontSize
+     * Desc: 设置按钮字休大小
+     * Author: zfs
+     * Date: 2021-06-19 16:10
+     */
+    function onSetBtnFontSize(fontSize) {
+        barBtnsId.onSetFontSize(fontSize)
+    }
+
+    /*
+     * FunctionName: onSetBtnFontColor
+     * Desc: 设置按钮字休颜色
+     * Author: zfs
+     * Date: 2021-06-19 16:19
+     * @defColor: 默认时的颜色
+     * @selColor: 选中时的颜色
+     */
+    function onSetBtnFontColor(defColor, selColor) {
+        barBtnsId.onSetFontColor(defColor, selColor);
+    }
+
+    /*
+     * FunctionName: onSetBtnSpaceColor
+     * Desc: 设置按钮分隔线颜色
+     * Author: zfs
+     * Date: 2021-06-19 17:05
+     * @spaceColor: 颜色值
+     */
+    function onSetBtnSpaceColor(spaceColor) {
+        barBtnsId.onSetBtnSpaceColor(spaceColor);
+    }
+
+    /*
+     * FunctionName: onSetBtnWidth
+     * Desc: 设置按钮宽
+     * Author: zfs
+     * Date: 2021-06-19 16:46
+     */
+    function onSetBtnWidth(val) {
+        barBtnsId.onSetBtnWidth(val);
+    }
+
+    /*
+     * FunctionName: onSetRepeatEnable
+     * Desc: 是否启用重复输入状态，启用则不允许重复输入，不启用则允许重复输入
+     * Author: zfs
+     * Date: 2021-06-19 18:13
+     * @enable: 启用标志，true则启用，false则禁用，默认不启用
+     */
+    function onSetRepeatEnable(enable) {
+        barBtnsId.onSetRepeatEnable(enable);
     }
 
 }

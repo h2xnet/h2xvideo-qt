@@ -4,7 +4,11 @@ import QtQuick.Controls 2.12
 
 import module.h2xvideo.mainviewhandler 1.0
 
-
+/*
+ * ClassName: LoginView
+ * Desc: 登录页面
+ * Author: zfs
+ */
 Rectangle {
     id: loginView
     

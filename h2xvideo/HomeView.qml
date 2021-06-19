@@ -7,6 +7,13 @@ import module.h2xvideo.mainviewhandler 1.0
 import "./qmluilib/bar"
 import "./qmluilib/header"
 
+import "./navbar_data.js" as NavbarData
+
+/*
+ * ClassName: HomeView
+ * Desc: 主页面
+ * Author: zfs
+ */
 Rectangle {
     id: homeView
 
@@ -32,6 +39,35 @@ Rectangle {
         padRight: 320
     }
 
+    // 选项导航栏
+    Rectangle {
+        id: optionNavBarAreaId
+
+        anchors {
+            top: parent.top
+            topMargin: 10
+            right: parent.right
+            rightMargin: 10
+        }
+
+        height: 25
+        width: 140
+        color: "transparent"
+
+        NavBar {
+            id: optionNavBarId
+
+            width: parent.width
+            height: parent.height
+            boxBkColor: "transparent"
+
+            onNavItemClick: function(itemId) {
+                //console.log("HomeView.qml optionNavBarId onNavItemClick itemId : " + itemId)
+                onSimpleNavItemClick(itemId);
+            }
+        }
+    }
+
     // 头部导航栏
     NavBar {
         id: topNavBarId
@@ -43,7 +79,8 @@ Rectangle {
         }
 
         onNavItemClick: function(itemId) {
-            console.log("HomeView.qml topNavBarId onNavItemClick itemId : " + itemId)
+            //console.log("HomeView.qml topNavBarId onNavItemClick itemId : " + itemId)
+            onSimpleNavItemClick(itemId);
         }
     }
 
@@ -66,11 +103,12 @@ Rectangle {
                 horizontalCenter: parent.horizontalCenter
             }
 
-            width: 180
+            width: 270
             height: parent.height
 
             onNavItemClick: function(itemId) {
-                console.log("HomeView.qml bottomNavBarId onNavItemClick itemId : " + itemId)
+                //console.log("HomeView.qml bottomNavBarId onNavItemClick itemId : " + itemId)
+                onSimpleNavItemClick(itemId);
             }
         }
     }
@@ -87,6 +125,9 @@ Rectangle {
      * Date: 2021-06-19 08:48
      */
     function onInit() {
+        // 初始化选项导航栏
+        onInitOptionNavBar();
+
         // 初始化头部导航栏
         onInitTopNavBar();
 
@@ -96,43 +137,75 @@ Rectangle {
     }
 
     /*
+     * FunctionName: onInitOptionNavBar
+     * Desc: 初始化选项导航栏
+     * Author: zfs
+     * Date: 2021-06-19 10:57
+     */
+    function onInitOptionNavBar() {
+        let navDatas = []
+
+        if (mainViewHandler.getIsLogined()) {
+            // 已经登录
+            navDatas = NavbarData.getLogoutRegistNavDatas();
+        }
+        else {
+            // 未登录
+            navDatas = NavbarData.getLoginRegistNavDatas();
+        }
+
+        optionNavBarId.onSetBtnFontSize(10)
+        optionNavBarId.onSetBtnWidth(60)
+        optionNavBarId.onSetBtnFontColor("#000000", "#0000FF");
+        optionNavBarId.onSetBtnSpaceColor("#0000FF");
+        optionNavBarId.onSetRepeatEnable(true);
+        optionNavBarId.onStart(navDatas, -1, "center", 2)
+    }
+
+    /*
      * FunctionName: onInitTopNavBar
      * Desc: 初始化头部导航栏
      * Author: zfs
      * Date: 2021-06-19 10:57
      */
     function onInitTopNavBar() {
-        let navBts = [
-            {
-                    id: "focus",
-                    title: '关注'
-            },
-            {
-                    id: "hotspot",
-                    title: "热点"
-            },
-            {
-                    id: "nearby",
-                    title: "附近"
-            }
-        ]
-
-        topNavBarId.onStart(navBts, 1, 'left', 0);
+        let navDatas = NavbarData.getHomeTopNavDatas();
+        topNavBarId.onStart(navDatas, 1, 'left', 0);
     }
 
+    /*
+     * FunctionName: onInitBottomNavBar
+     * Desc: 初始化底部导航栏
+     * Author: zfs
+     * Date: 2021-06-19 10:57
+     */
     function onInitBottomNavBar() {
-        let navBts = [
-            {
-                    id: "first",
-                    title: '首页'
-            },
-            {
-                    id: "friends",
-                    title: "朋友"
-            }
-        ]
+        let navDatas = NavbarData.getBottomNavDatas();
+        bottomNavBarId.onStart(navDatas, 0, 'center', 10);
+        bottomNavBarId.onSetBtnFontSize(16);
+    }
 
-        bottomNavBarId.onStart(navBts, 0, 'center', 10);
+    /*
+     * FunctionName: onSimpleNavItemClick
+     * Desc: 统一的导航按钮事件处理函数（简化版）
+     * Author: zfs
+     * Date: 2021-06-19 17:37
+     * @itemId: 导航按钮ID
+     */
+    function onSimpleNavItemClick(itemId) {
+        console.log("HomeView onSimpleNavItemClick itemId : " + itemId);
+
+        if (itemId === "login") {
+            // 登录
+            // 跳转到登录页面
+            mainViewHandler.routerPageSet("HomeView", "login", "");
+        }
+        else if (itemId === "logout") {
+            // 注销
+        }
+        else if (itemId === "regist") {
+            // 注册
+        }
     }
 
 }
