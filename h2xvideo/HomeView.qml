@@ -34,9 +34,9 @@ Rectangle {
         }
 
         width: parent.width
-        boxHeight: 140
+        height: 140
         padTop: 50
-        padRight: 320
+        padRight: 30
     }
 
     // 选项导航栏

@@ -15,10 +15,6 @@ Item {
     // 单击信号
     signal searchBtnClick(var keyword);
 
-    // 搜索区域宽
-    property var boxWidth: 280
-    // 搜索区域高
-    property var boxHeight: 34
     // 搜索区域背景色
     property var boxBkColor: "#F5F5F5"
     // 搜索区域圆角值
@@ -42,8 +38,8 @@ Item {
 
     // 背景框
     Rectangle {
-        width: boxWidth
-        height: boxHeight
+        width: parent.width
+        height: parent.height
         color: boxBkColor
         radius: boxRoundValue
 
@@ -51,8 +47,8 @@ Item {
         InputBox {
             id: searchTextId
 
-            boxWidth: parent.width - spaceWidth
-            boxHeight: parent.height
+            width: parent.width - spaceWidth
+            height: parent.height
             roundValue: boxRoundValue
             inputFontSize: inputTextFontSize
 

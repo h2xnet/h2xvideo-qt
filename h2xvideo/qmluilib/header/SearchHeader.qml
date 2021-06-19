@@ -16,23 +16,18 @@ Item {
 
     // 背景颜色
     property var boxBkColor: "#0099FF"
-
-    // 宽
-    property var boxWidth: parent.width
-    // 高
-    property var boxHeight: 100
     // 边距
     property var padTop: 20
-    property var padRight: 350
+    property var padRight: 30
 
-    width: boxWidth
-    height: boxHeight
+    width: parent.width
+    height: parent.height
 
     // 背景区域
     Rectangle {
         id: bkWin
-        width: boxWidth
-        height: boxHeight
+        width: parent.width
+        height: parent.height
         color: boxBkColor
     }
 
@@ -46,6 +41,9 @@ Item {
             right: parent.right
             rightMargin: searchWin.padRight
         }
+
+        width: 250
+        height: 36
 
         onSearchBtnClick: function(keyword) {
             console.log("SearchHeader onSearchBtnClick keyword : " + keyword);

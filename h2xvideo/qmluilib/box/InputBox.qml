@@ -14,10 +14,6 @@ Item {
     // 输入文本改变信号函数
     signal inputTextChange(var text);
 
-    // 输入框宽大小
-    property var boxWidth: 240
-    // 输入框高大小
-    property var boxHeight: 30
     // 圆角值
     property var roundValue: 5
     // 输入字体大小
@@ -33,8 +29,8 @@ Item {
     Rectangle {
         id: inputBkWin
 
-        width: boxWidth
-        height: boxHeight
+        width: parent.width
+        height: parent.height
         radius: roundValue
 
         // 文本输入框

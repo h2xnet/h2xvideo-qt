@@ -67,6 +67,7 @@ Window {
         console.log("main.qml Component.onCompleted.")
         // 初始化页面
         homeView.onInit();
+        loginView.onInit();
 
         // 加载主页
         mainViewHandler.routerPageSet("main", "home", "");

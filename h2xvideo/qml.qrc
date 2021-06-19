@@ -27,5 +27,6 @@
         <file>qmluilib/button/ImageButton.qml</file>
         <file>qmluilib/bar/TextButtonBar.qml</file>
         <file>navbar_data.js</file>
+        <file>qmluilib/imgs/login/login_bk_1.jpg</file>
     </qresource>
 </RCC>
