@@ -93,3 +93,67 @@ function getBottomNavDatas() {
 
     return navDatas;
 }
+
+//
+// getGroupListTestDatas : 获取组列表测试数据
+//
+function getGroupListTestDatas() {
+    let datas = [
+        {
+            groupId: 1,
+            groupName:"旅行",
+            tags: ["vlog","景点","美食","度假"],
+            videos: [
+                {
+                    id: 1,
+                    title: "武功山之行",
+                    tag: "vlog",
+                    star: 0,
+                    desc: "美丽绿色武功山之行",
+                    source: "",
+                    createTime: "",
+                    updateTime: ""
+                },
+                {
+                    id: 2,
+                    title: "玉龙雪山",
+                    tag: "景点",
+                    star: 0,
+                    desc: "丽江玉龙雪山",
+                    source: "",
+                    createTime: "",
+                    updateTime: ""
+                }
+            ]
+        },
+        {
+            groupId: 2,
+            groupName:"电影",
+            tags: ["动作","科幻","喜剧","爱情"],
+            videos: [
+                {
+                    id: 3,
+                    title: "速度与激情",
+                    tag: "动作",
+                    star: 3,
+                    desc: "经典美国动作大片",
+                    source: "",
+                    createTime: "",
+                    updateTime: ""
+                },
+                {
+                    id: 4,
+                    title: "007",
+                    tag: "赌王",
+                    star: 0,
+                    desc: "经典系列",
+                    source: "",
+                    createTime: "",
+                    updateTime: ""
+                }
+            ]
+        }
+    ]
+
+    return datas;
+}

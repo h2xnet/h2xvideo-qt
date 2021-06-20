@@ -6,6 +6,7 @@ import module.h2xvideo.mainviewhandler 1.0
 
 import "./qmluilib/bar"
 import "./qmluilib/header"
+import "./qmluilib/list"
 
 import "./navbar_data.js" as NavbarData
 
@@ -19,6 +20,12 @@ Rectangle {
 
     property var pageId : ""
     property var pageParam : ""
+
+    // 列表内容边距
+    property var contentPadLeft: 30
+    property var contentPadTop: 15
+    property var contentPadRight: 60
+    property var contentPadBottom: 15
 
     width: parent.width
     height: parent.height
@@ -84,6 +91,39 @@ Rectangle {
         }
     }
 
+    // 中间内容区域
+    Rectangle {
+        id: contentAreaId
+
+        anchors {
+            top: topNavBarId.bottom
+            topMargin: 0
+        }
+
+        width: parent.width
+        height: (parent.height - searchWin.height - topNavBarId.height)
+        color: "#ABABAB"
+
+        // 内容列表
+        GroupFlowList {
+            id: groupListId
+
+            anchors {
+                left: parent.left
+                leftMargin: contentPadLeft
+                top: parent.top
+                topMargin: contentPadTop
+                right: parent.right
+                rightMargin: contentPadRight
+                bottom: parent.bottom
+                bottomMargin: contentPadBottom
+            }
+
+            width: parent.width - contentPadLeft - contentPadRight
+            height: parent.height - contentPadTop - contentPadBottom
+        }
+    }
+
     // 底部导航栏
     Rectangle {
         id: bottomNavAreaId
@@ -113,11 +153,6 @@ Rectangle {
         }
     }
 
-    Text {
-        anchors.centerIn: parent
-        text: "Hello, World!, home!"
-    }
-
     /*
      * FunctionName: onInit
      * Desc: 初始化页面
@@ -133,6 +168,9 @@ Rectangle {
 
         // 初始化底部导航栏
         onInitBottomNavBar();
+
+        // 初始化内容
+        onInitContentList();
 
     }
 
@@ -183,6 +221,18 @@ Rectangle {
         let navDatas = NavbarData.getBottomNavDatas();
         bottomNavBarId.onStart(navDatas, 0, 'center', 10);
         bottomNavBarId.onSetBtnFontSize(16);
+    }
+
+    /*
+     * FunctionName: onInitContentList
+     * Desc: 初始化内容列表
+     * Author: zfs
+     * Date: 2021-06-20 11:19
+     */
+    function onInitContentList() {
+        let listDatas = NavbarData.getGroupListTestDatas();
+        console.log("HomeView.qml onInitContentList NavbarData.getGroupListTestDatas datas : " + JSON.stringify((listDatas)))
+        groupListId.onStart(listDatas);
     }
 
     /*
