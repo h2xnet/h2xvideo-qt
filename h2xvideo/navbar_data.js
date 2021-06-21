@@ -109,8 +109,9 @@ function getGroupListTestDatas() {
                     title: "武功山之行",
                     tag: "vlog",
                     star: 0,
-                    desc: "美丽绿色武功山之行",
+                    desc: "美丽绿色武功山之行,一生值得一去的地方",
                     source: "",
+                    coverUrl: "https://pic7.iqiyipic.com/image/20210621/55/94/v_160260694_m_601_480_270.jpg",
                     createTime: "",
                     updateTime: ""
                 },
@@ -120,7 +121,8 @@ function getGroupListTestDatas() {
                     tag: "景点",
                     star: 0,
                     desc: "丽江玉龙雪山",
-                    source: "",
+                    source: "https://pic7.iqiyipic.com/image/20210621/a1/8c/v_160206311_m_601_320_180.jpg",
+                    coverUrl: "",
                     createTime: "",
                     updateTime: ""
                 }
@@ -138,6 +140,7 @@ function getGroupListTestDatas() {
                     star: 3,
                     desc: "经典美国动作大片",
                     source: "",
+                    coverUrl: "",
                     createTime: "",
                     updateTime: ""
                 },
@@ -148,6 +151,7 @@ function getGroupListTestDatas() {
                     star: 0,
                     desc: "经典系列",
                     source: "",
+                    coverUrl: "",
                     createTime: "",
                     updateTime: ""
                 }

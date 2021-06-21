@@ -34,17 +34,26 @@ Item {
 
     // 列表项相关
     // 项尺寸
-    property var itemWidth: 100
-    property var itemHeight: 180
+    property var itemWidth: 184
+    property var itemHeight: 250
     // 封面尺寸
     property var itemCoverWidth: 90
     property var itemCoverHeight: 110
+    // 组名相关
+    property var itemGroupNameHeight: 40
+    property var itemGroupNameWidth: 100
+    property var itemGroupNameFontSize: 18
+    property var itemGroupNameMarginLeft: 0
     // 标题栏高
     property var itemTitleHeight: 20
+    property var itemTitleFontSize: 12
     // 描述高
-    property var itemDescHeight: 30
+    property var itemDescHeight: 40
+    property var itemDescFontSize: 10
     // 其它选项
     property var itemOptionHeight: 20
+
+    property var itemRoundValue: 10
 
     // 背景窗口
     Rectangle {
@@ -59,39 +68,26 @@ Item {
             id: listId
 
             anchors {
-                left: parent.left
-                leftMargin: marginLeft
+                /*left: parent.left
+                leftMargin: marginLeft*/
                 top: parent.top
                 topMargin: marginTop
-                right: parent.right
+                /*right: parent.right
                 rightMargin: marginRight
                 bottom: parent.bottom
-                bottomMargin: marginBottom
+                bottomMargin: marginBottom*/
             }
 
             width: parent.width - marginLeft - marginRight
             height: parent.height - marginTop - marginBottom
-            contentWidth: listId.width
-            contentHeight: {
-                // 计算内容高
-                let lineCount = Math.floor(listId.width / (itemWidth + rowSpace));
-                if (lineCount < 1) {
-                    lineCount = 1;
-                }
-                // 计算总行数
-                let rowCount = Math.ceil(datas.length / lineCount);
-                // 计算内容高，并修正最小值
-                let cHeight = rowCount * (itemHeight + columnSpace);
-                if (cHeight < listId.height) {
-                    cHeight = listId.height;
-                }
-                return cHeight;
-            }
+            contentWidth: width
+            contentHeight: height
 
             Column {
                 id: contentId
                 // 小组列表
                 width: parent.width
+                spacing: rowSpace
 
                 Repeater {
                     model: listDataModelId
@@ -102,11 +98,114 @@ Item {
                         width: parent.width
                         spacing: rowSpace
 
-                        // 小组名称
-                        Text {
-                            id: groupNameId
-                            text: qsTr(groupName)
-                        }
+                        Row {
+                            // 小组名称
+                            Rectangle {
+                                anchors.verticalCenter: parent.verticalCenter
+                                width: itemGroupNameWidth;
+                                height: itemGroupNameHeight;
+                                color: "transparent"
+
+                                // 小组名称
+                                Text {
+                                    id: groupNameId
+
+                                    anchors {
+                                        verticalCenter: parent.verticalCenter
+                                        left: parent.left
+                                        leftMargin: itemGroupNameMarginLeft
+                                    }
+
+                                    font.pointSize: itemGroupNameFontSize
+                                    text: qsTr(groupName)
+                                }
+                            }
+
+                        } // end Row
+
+                        // 视频列表
+                        Flow {
+                            width: parent.width
+                            spacing: columnSpace
+
+                            anchors {
+                                horizontalCenter: parent.horizontalCenter
+                            }
+
+                            Repeater {
+                                model: videos
+
+                                Rectangle {
+                                    id: itemVideoId
+
+                                    width: itemWidth
+                                    height: itemHeight
+                                    radius: itemRoundValue
+                                    color: "#2F2F2F"
+
+                                    Column {
+                                        // 封面图片
+                                        Image {
+                                            asynchronous: true
+                                            cache: false
+                                            width: itemCoverWidth
+                                            height: itemCoverHeight
+                                            source: coverUrl
+                                        }
+
+                                        // 标题项
+                                        Rectangle {
+                                            id: itemTitleId
+                                            width: itemWidth
+                                            height: itemTitleHeight
+                                            color: "#A8A8A8"
+                                            Text {
+                                                id: itemTitleTextId
+
+                                                anchors {
+                                                    verticalCenter: parent.verticalCenter
+                                                    top: itemVideoId.top
+                                                    topMargin: itemCoverHeight
+                                                }
+                                                font.pointSize: itemTitleFontSize
+                                                width: parent.width
+                                                elide: Text.ElideRight  // 超出部分用省略号代替
+                                                color: "#000000"
+                                                text: qsTr(title)
+                                            }
+                                        }
+
+                                        // 描述
+                                        Rectangle {
+                                            id: itemDescId
+                                            width: itemWidth
+                                            height: itemDescHeight
+                                            color: "#282828"
+                                            Text {
+                                                id: itemDescTextId
+
+                                                anchors {
+                                                    top: itemTitleId.bottom
+                                                    topMargin: 0
+                                                    //verticalCenter: parent.verticalCenter
+                                                }
+                                                font.pointSize: itemDescFontSize
+                                                color: "#000000"
+                                                width: parent.width
+                                                wrapMode: "WordWrap"
+                                                lineHeightMode: Text.FixedHeight //设置行间距 以像素的方式设置
+                                                lineHeight: 14 //行间距比例 最大 1
+                                                text: qsTr(desc)
+                                            }
+                                        }
+
+                                    }
+
+                                } // end itemVideoId
+
+                            } // end Repeater
+
+                        } // end Flow
 
                     } // end Column groupDataId
 
@@ -135,6 +234,9 @@ Item {
 
             datas.push(itemObj);
         }
+
+        // 计算内容高度
+        onCalContentHeight();
     }
 
     /*
@@ -145,6 +247,46 @@ Item {
      */
     function onStop() {
 
+    }
+
+    /*
+     * FunctionName: onCalContentHeight
+     * Desc: 计算内容高度
+     * Author: zfs
+     * Date: 2021-06-21 22:27
+     */
+    function onCalContentHeight() {
+
+        // 计算内容高
+        let lineCount = Math.floor(listId.width / (itemWidth + rowSpace));
+        if (lineCount < 1) {
+            lineCount = 1;
+        }
+
+        // 计算总行数
+        let rowCount = 1;
+        for(let idx = 0; idx < datas.length; idx++) {
+            let itemObj = datas[idx];
+
+            let itemVideosObj = itemObj["videos"];
+            let itemRowCount = Math.ceil(itemVideosObj.length / lineCount);
+            if (itemRowCount > 0) {
+                rowCount += itemRowCount;
+            }
+            else {
+                rowCount += 1;
+            }
+        }
+
+        // 计算内容高，并修正最小值
+        let cHeight = rowCount * (itemHeight + columnSpace + itemGroupNameHeight);
+        if (cHeight < listId.height) {
+            cHeight = listId.height;
+        }
+
+        console.log("---- lineCount " + lineCount + "  --- rowCount " + rowCount + "   cHeight " + cHeight)
+
+        listId.contentHeight = cHeight
     }
 
 }
