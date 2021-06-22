@@ -121,8 +121,8 @@ function getGroupListTestDatas() {
                     tag: "景点",
                     star: 0,
                     desc: "丽江玉龙雪山",
-                    source: "https://pic7.iqiyipic.com/image/20210621/a1/8c/v_160206311_m_601_320_180.jpg",
-                    coverUrl: "",
+                    source: "",
+                    coverUrl: "https://pic9.iqiyipic.com/image/20210622/e6/a4/v_112846088_m_601_m3_260_360.jpg?caplist=jpg,webp,avif",
                     createTime: "",
                     updateTime: ""
                 }
@@ -140,7 +140,7 @@ function getGroupListTestDatas() {
                     star: 3,
                     desc: "经典美国动作大片",
                     source: "",
-                    coverUrl: "",
+                    coverUrl: "https://pic4.iqiyipic.com/image/20210604/81/a4/v_159888228_m_601_320_180.jpg?caplist=jpg,webp,avif",
                     createTime: "",
                     updateTime: ""
                 },
@@ -151,7 +151,7 @@ function getGroupListTestDatas() {
                     star: 0,
                     desc: "经典系列",
                     source: "",
-                    coverUrl: "",
+                    coverUrl: "https://pic5.iqiyipic.com/image/20210615/8e/a4/v_160107478_m_601_260_360.jpg?caplist=jpg,webp,avif",
                     createTime: "",
                     updateTime: ""
                 }

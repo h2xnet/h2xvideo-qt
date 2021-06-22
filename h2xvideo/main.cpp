@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
     }
 
     //app.setWindowIcon()
+    // "OpenSSL 1.1.1d  10 Sep 2019"
+    qDebug()<<QSslSocket::sslLibraryBuildVersionString();
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/main.qml"));

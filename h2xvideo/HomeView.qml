@@ -40,6 +40,7 @@ Rectangle {
             topMargin: 0
         }
 
+        z: 1
         width: parent.width
         height: 140
         padTop: 50
@@ -57,6 +58,7 @@ Rectangle {
             rightMargin: 10
         }
 
+        z: 1
         height: 25
         width: 140
         color: "transparent"
@@ -79,11 +81,13 @@ Rectangle {
     NavBar {
         id: topNavBarId
 
-        height: 35
         anchors {
             top: searchWin.bottom
             topMargin: 0
         }
+
+        z: 1
+        height: 35
 
         onNavItemClick: function(itemId) {
             //console.log("HomeView.qml topNavBarId onNavItemClick itemId : " + itemId)
@@ -100,6 +104,7 @@ Rectangle {
             topMargin: 0
         }
 
+        z: 0
         width: parent.width
         height: (parent.height - searchWin.height - topNavBarId.height)
         color: "#ABABAB"
@@ -132,6 +137,8 @@ Rectangle {
             bottom: homeView.bottom
             bottomMargin: 10
         }
+
+        z: 1
         width: parent.width
         height: 55
         color: "transparent"

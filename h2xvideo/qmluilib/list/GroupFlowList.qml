@@ -12,6 +12,8 @@ import "../label"
 Item {
     id: groupFlowListId
 
+    signal itemClick(int itemId);
+
     // 数据模型
     ListModel {
         id: listDataModelId
@@ -20,7 +22,7 @@ Item {
     property var datas: []
 
     // 背景颜色
-    property var listBkColor: "#FF0000"
+    property var listBkColor: "transparent"
 
     // 列表边距
     property var marginLeft: 5
@@ -33,27 +35,23 @@ Item {
     property var columnSpace: 10
 
     // 列表项相关
-    // 项尺寸
-    property var itemWidth: 184
-    property var itemHeight: 250
-    // 封面尺寸
-    property var itemCoverWidth: 90
-    property var itemCoverHeight: 110
     // 组名相关
     property var itemGroupNameHeight: 40
     property var itemGroupNameWidth: 100
     property var itemGroupNameFontSize: 18
     property var itemGroupNameMarginLeft: 0
+    // 项尺寸
+    property var itemWidth: 184
+    property var itemHeight: 250
+    // 封面尺寸
+    property var itemCoverWidth: 184
+    property var itemCoverHeight: 190
     // 标题栏高
-    property var itemTitleHeight: 20
+    property var itemTitleHeight: 30
     property var itemTitleFontSize: 12
     // 描述高
-    property var itemDescHeight: 40
-    property var itemDescFontSize: 10
-    // 其它选项
-    property var itemOptionHeight: 20
-
-    property var itemRoundValue: 10
+    property var itemDescHeight: 30
+    property var itemDescFontSize: 11
 
     // 背景窗口
     Rectangle {
@@ -68,14 +66,8 @@ Item {
             id: listId
 
             anchors {
-                /*left: parent.left
-                leftMargin: marginLeft*/
                 top: parent.top
                 topMargin: marginTop
-                /*right: parent.right
-                rightMargin: marginRight
-                bottom: parent.bottom
-                bottomMargin: marginBottom*/
             }
 
             width: parent.width - marginLeft - marginRight
@@ -140,8 +132,16 @@ Item {
 
                                     width: itemWidth
                                     height: itemHeight
-                                    radius: itemRoundValue
-                                    color: "#2F2F2F"
+                                    color: "#5F5F5F"
+
+                                    MouseArea {
+                                        anchors.fill: parent
+
+                                        onClicked: {
+                                            console.log("GroupFlowList itemVideo onClick index id : " + id);
+                                            itemClick(id);
+                                        }
+                                    }
 
                                     Column {
                                         // 封面图片
@@ -156,17 +156,16 @@ Item {
                                         // 标题项
                                         Rectangle {
                                             id: itemTitleId
-                                            width: itemWidth
+                                            width: parent.width
                                             height: itemTitleHeight
-                                            color: "#A8A8A8"
+                                            color: "transparent"
                                             Text {
                                                 id: itemTitleTextId
 
                                                 anchors {
                                                     verticalCenter: parent.verticalCenter
-                                                    top: itemVideoId.top
-                                                    topMargin: itemCoverHeight
                                                 }
+
                                                 font.pointSize: itemTitleFontSize
                                                 width: parent.width
                                                 elide: Text.ElideRight  // 超出部分用省略号代替
@@ -180,24 +179,41 @@ Item {
                                             id: itemDescId
                                             width: itemWidth
                                             height: itemDescHeight
-                                            color: "#282828"
+                                            color: "transparent"
+
                                             Text {
                                                 id: itemDescTextId
 
-                                                anchors {
-                                                    top: itemTitleId.bottom
-                                                    topMargin: 0
-                                                    //verticalCenter: parent.verticalCenter
-                                                }
                                                 font.pointSize: itemDescFontSize
                                                 color: "#000000"
                                                 width: parent.width
-                                                wrapMode: "WordWrap"
-                                                lineHeightMode: Text.FixedHeight //设置行间距 以像素的方式设置
-                                                lineHeight: 14 //行间距比例 最大 1
+                                                elide: Text.ElideRight  // 超出部分用省略号代替
                                                 text: qsTr(desc)
                                             }
                                         }
+
+                                        // 选项
+                                        /*Row {
+                                            Rectangle {
+
+                                                width: 100
+                                                height: itemOptionHeight
+                                                color: "transparent"
+
+                                                Text {
+                                                    id: idStarId
+
+                                                    anchors {
+                                                        verticalCenter: parent.verticalCenter
+                                                        left: parent.left
+                                                        leftMargin: 15;
+                                                    }
+                                                    color: "#000000"
+                                                    text: qsTr(JSON.stringify(star))
+
+                                                }
+                                            }
+                                        }*/
 
                                     }
 
