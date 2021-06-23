@@ -263,6 +263,9 @@ Rectangle {
         else if (itemId === "regist") {
             // 注册
         }
+        else {
+            mainViewHandler.routerPageSet("HomeView", itemId, "");
+        }
     }
 
 }

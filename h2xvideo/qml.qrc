@@ -31,5 +31,7 @@
         <file>qmluilib/list/GroupFlowList.qml</file>
         <file>qmluilib/bar/VerSuspenToolBar.qml</file>
         <file>qmluilib/label/TextLabel.qml</file>
+        <file>FriendsView.qml</file>
+        <file>MyView.qml</file>
     </qresource>
 </RCC>

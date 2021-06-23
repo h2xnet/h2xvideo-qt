@@ -83,11 +83,11 @@ function getBottomNavDatas() {
         },
         {
             id: "friends",
-            title: "朋友"
+            title: "友圈"
         },
         {
-            id: "about",
-            title: "关于"
+            id: "my",
+            title: "我的"
         }
     ]
 

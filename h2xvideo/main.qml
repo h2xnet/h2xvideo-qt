@@ -63,11 +63,34 @@ Window {
         pageParam: ""
     }
 
+    //
+    // FriendsView : 友圈页面
+    //
+    FriendsView {
+        id: friendsView
+        visible: false
+        pageId: "friends"
+        pageParam: ""
+    }
+
+    //
+    // FriendsView : 我的页面
+    //
+    MyView {
+        id: myView
+        visible: false
+        pageId: "my"
+        pageParam: ""
+    }
+
     Component.onCompleted: {
         console.log("main.qml Component.onCompleted.")
         // 初始化页面
         homeView.onInit();
         loginView.onInit();
+
+        friendsView.onInit();
+        myView.onInit();
 
         // 加载主页
         mainViewHandler.routerPageSet("main", "home", "");
@@ -94,6 +117,14 @@ Window {
             else if (pageId === "login") {
                 mainWin.hasTitleBar = false;
                 routerStack.setReplece(loginView, pageId, pageParam);
+            }
+            else if (pageId === "friends") {
+                // 友圈
+                routerStack.setReplece(friendsView, pageId, pageParam);
+            }
+            else if (pageId === "my") {
+                // 我的
+                routerStack.setReplece(myView, pageId, pageParam);
             }
 
         }
