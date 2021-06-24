@@ -8,6 +8,7 @@ import "qrc:/qmluilib/router"
 
 Window {
     id: mainWin
+
     // 包含标题栏标志
     property bool hasTitleBar: true
 
@@ -35,6 +36,16 @@ Window {
     RouterStackView {
         id: routerStack
     }
+
+    // 底部导航栏
+    TopNavBarView {
+        id: bottomNavBar
+        visible: false
+
+        width: parent.width
+        height: 55
+    }
+
 
     //
     // HomeView : 首页页面
@@ -85,6 +96,10 @@ Window {
 
     Component.onCompleted: {
         console.log("main.qml Component.onCompleted.")
+        // 初始化导航栏
+        bottomNavBar.onInit();
+        bottomNavBar.onShowHide(false);
+
         // 初始化页面
         homeView.onInit();
         loginView.onInit();
@@ -110,13 +125,17 @@ Window {
             }
             console.log("main.qml MainViewHandler.onRouterPageChangeEvent params: " + JSON.stringify(paramObj));
 
+            let bottomNavBarShow = true;
+
             if (pageId === "home") {
+                // 首页
                 mainWin.hasTitleBar = true;
                 routerStack.setReplece(homeView, pageId, pageParam);
             }
             else if (pageId === "login") {
                 mainWin.hasTitleBar = false;
                 routerStack.setReplece(loginView, pageId, pageParam);
+                bottomNavBarShow = false;
             }
             else if (pageId === "friends") {
                 // 友圈
@@ -126,6 +145,7 @@ Window {
                 // 我的
                 routerStack.setReplece(myView, pageId, pageParam);
             }
+            bottomNavBar.onShowHide(bottomNavBarShow);
 
         }
 

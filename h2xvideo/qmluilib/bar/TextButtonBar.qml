@@ -196,4 +196,32 @@ Item {
         repeatEnable = enable;
     }
 
+    /*
+     * FunctionName: onGetCurSelIndex
+     * Desc: 获取当前选中项序号
+     * Author: zfs
+     * Date: 2021-06-24 22:41
+     * 返回值：成功返回大于0序号，失败返回-1
+     */
+    function onGetCurSelIndex() {
+        return selIndex;
+    }
+
+    /*
+     * FunctionName: onGetCurSelId
+     * Desc: 获取当前选中项ID
+     * Author: zfs
+     * Date: 2021-06-24 22:41
+     * 返回值：成功返回ID，失败返回空字符串
+     */
+    function onGetCurSelId() {
+        if (selIndex >= 0 && selIndex < datas.length) {
+            let itemObj = datas[selIndex];
+
+            let itemId = itemObj["id"];
+            return itemId;
+        }
+        return "";
+    }
+
 }

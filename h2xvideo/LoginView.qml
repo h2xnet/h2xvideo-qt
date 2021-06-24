@@ -7,6 +7,8 @@ import module.h2xvideo.mainviewhandler 1.0
 import "qrc:/qmluilib/bar"
 import "qrc:/qmluilib/box"
 
+import "./router.js" as Router
+
 /*
  * ClassName: LoginView
  * Desc: 登录页面
@@ -181,7 +183,8 @@ Rectangle {
                     onClicked: {
                         // 返回事件
                         console.log("LoginView.qml onClicked.");
-                        mainViewHandler.routerPageSet("LoginView", "home", "");
+                        //mainViewHandler.routerPageSet("LoginView", "home", "");
+                        Router.navPageRouter("LoginView", "home", "");
                     }
                 }
             }

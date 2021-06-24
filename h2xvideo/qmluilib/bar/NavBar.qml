@@ -169,4 +169,26 @@ Item {
         barBtnsId.onSetRepeatEnable(enable);
     }
 
+    /*
+     * FunctionName: onGetCurSelIndex
+     * Desc: 获取当前选中项序号
+     * Author: zfs
+     * Date: 2021-06-24 22:42
+     * 返回值：成功返回大于0序号，失败返回-1
+     */
+    function onGetCurSelIndex() {
+        return barBtnsId.onGetCurSelIndex();
+    }
+
+    /*
+     * FunctionName: onGetCurSelId
+     * Desc: 获取当前选中项ID
+     * Author: zfs
+     * Date: 2021-06-24 22:43
+     * 返回值：成功返回ID，失败返回空字符串
+     */
+    function onGetCurSelId() {
+        return barBtnsId.onGetCurSelId();
+    }
+
 }

@@ -8,7 +8,12 @@ import "./qmluilib/bar"
 import "./qmluilib/header"
 import "./qmluilib/list"
 
+// 子页面
+import "./home"
+
 import "./navbar_data.js" as NavbarData
+import "./router.js" as Router
+
 
 /*
  * ClassName: HomeView
@@ -20,6 +25,9 @@ Rectangle {
 
     property var pageId : ""
     property var pageParam : ""
+
+    // 头部选中头部导航项ID，根据它来决定显示的内容
+    property var curHeadNavItemId: ""
 
     // 列表内容边距
     property var contentPadLeft: 30
@@ -91,6 +99,7 @@ Rectangle {
 
         onNavItemClick: function(itemId) {
             //console.log("HomeView.qml topNavBarId onNavItemClick itemId : " + itemId)
+
             onSimpleNavItemClick(itemId);
         }
     }
@@ -109,9 +118,11 @@ Rectangle {
         height: (parent.height - searchWin.height - topNavBarId.height)
         color: "#ABABAB"
 
-        // 内容列表
-        GroupFlowList {
-            id: groupListId
+        // 关注内容
+        FocusContentView {
+            id: focusContentView
+
+            visible: curHeadNavItemId == "focus"
 
             anchors {
                 left: parent.left
@@ -127,38 +138,71 @@ Rectangle {
             width: parent.width - contentPadLeft - contentPadRight
             height: parent.height - contentPadTop - contentPadBottom
         }
-    }
 
-    // 底部导航栏
-    Rectangle {
-        id: bottomNavAreaId
+        // 热点内容
+        HotspotContentView {
+            id: hotspotContentView
 
-        anchors {
-            bottom: homeView.bottom
-            bottomMargin: 10
-        }
-
-        z: 1
-        width: parent.width
-        height: 55
-        color: "transparent"
-
-        NavBar {
-            id: bottomNavBarId
+            visible: (curHeadNavItemId == "hotspot" || curHeadNavItemId == "")
 
             anchors {
-                horizontalCenter: parent.horizontalCenter
+                left: parent.left
+                leftMargin: contentPadLeft
+                top: parent.top
+                topMargin: contentPadTop
+                right: parent.right
+                rightMargin: contentPadRight
+                bottom: parent.bottom
+                bottomMargin: contentPadBottom
             }
 
-            width: 270
-            height: parent.height
-
-            onNavItemClick: function(itemId) {
-                //console.log("HomeView.qml bottomNavBarId onNavItemClick itemId : " + itemId)
-                onSimpleNavItemClick(itemId);
-            }
+            width: parent.width - contentPadLeft - contentPadRight
+            height: parent.height - contentPadTop - contentPadBottom
         }
-    }
+
+        // 视频内容
+        VideoContentView {
+            id: videoContentView
+
+            visible: curHeadNavItemId == "video"
+
+            anchors {
+                left: parent.left
+                leftMargin: contentPadLeft
+                top: parent.top
+                topMargin: contentPadTop
+                right: parent.right
+                rightMargin: contentPadRight
+                bottom: parent.bottom
+                bottomMargin: contentPadBottom
+            }
+
+            width: parent.width - contentPadLeft - contentPadRight
+            height: parent.height - contentPadTop - contentPadBottom
+        }
+
+        // 音频内容
+        AudioContentView {
+            id: audioContentView
+
+            visible: curHeadNavItemId == "audio"
+
+            anchors {
+                left: parent.left
+                leftMargin: contentPadLeft
+                top: parent.top
+                topMargin: contentPadTop
+                right: parent.right
+                rightMargin: contentPadRight
+                bottom: parent.bottom
+                bottomMargin: contentPadBottom
+            }
+
+            width: parent.width - contentPadLeft - contentPadRight
+            height: parent.height - contentPadTop - contentPadBottom
+        }
+
+    } // end contentAreaId
 
     /*
      * FunctionName: onInit
@@ -172,9 +216,6 @@ Rectangle {
 
         // 初始化头部导航栏
         onInitTopNavBar();
-
-        // 初始化底部导航栏
-        onInitBottomNavBar();
 
         // 初始化内容
         onInitContentList();
@@ -219,18 +260,6 @@ Rectangle {
     }
 
     /*
-     * FunctionName: onInitBottomNavBar
-     * Desc: 初始化底部导航栏
-     * Author: zfs
-     * Date: 2021-06-19 10:57
-     */
-    function onInitBottomNavBar() {
-        let navDatas = NavbarData.getBottomNavDatas();
-        bottomNavBarId.onStart(navDatas, 0, 'center', 10);
-        bottomNavBarId.onSetBtnFontSize(16);
-    }
-
-    /*
      * FunctionName: onInitContentList
      * Desc: 初始化内容列表
      * Author: zfs
@@ -239,7 +268,7 @@ Rectangle {
     function onInitContentList() {
         let listDatas = NavbarData.getGroupListTestDatas();
         console.log("HomeView.qml onInitContentList NavbarData.getGroupListTestDatas datas : " + JSON.stringify((listDatas)))
-        groupListId.onStart(listDatas);
+        hotspotContentView.onStart(listDatas);
     }
 
     /*
@@ -251,21 +280,28 @@ Rectangle {
      */
     function onSimpleNavItemClick(itemId) {
         console.log("HomeView onSimpleNavItemClick itemId : " + itemId);
-
-        if (itemId === "login") {
-            // 登录
-            // 跳转到登录页面
-            mainViewHandler.routerPageSet("HomeView", "login", "");
+        if (itemId === "focus") {
+            // 关注
+            curHeadNavItemId = itemId
+            //focusContentView.onStart([]);
         }
-        else if (itemId === "logout") {
-            // 注销
+        else if (itemId === "hotspot") {
+            // 热点
+            curHeadNavItemId = itemId;
         }
-        else if (itemId === "regist") {
-            // 注册
+        else if (itemId === "video") {
+            // 视频
+            curHeadNavItemId = itemId;
+        }
+        else if (itemId === "audio") {
+            // 音频
+            curHeadNavItemId = itemId;
         }
         else {
-            mainViewHandler.routerPageSet("HomeView", itemId, "");
+            // 主页面去路由
+            Router.navPageRouter("HomeView", itemId, "");
         }
+
     }
 
 }

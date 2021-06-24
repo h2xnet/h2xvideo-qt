@@ -33,5 +33,11 @@
         <file>qmluilib/label/TextLabel.qml</file>
         <file>FriendsView.qml</file>
         <file>MyView.qml</file>
+        <file>TopNavBarView.qml</file>
+        <file>router.js</file>
+        <file>home/HotspotContentView.qml</file>
+        <file>home/FocusContentView.qml</file>
+        <file>home/VideoContentView.qml</file>
+        <file>home/AudioContentView.qml</file>
     </qresource>
 </RCC>

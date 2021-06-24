@@ -78,7 +78,7 @@ function getHomeTopNavDatas() {
 function getBottomNavDatas() {
     let navDatas = [
         {
-            id: "first",
+            id: "home",
             title: '首页'
         },
         {
