@@ -1,6 +1,8 @@
 ﻿import QtQuick 2.0
 import QtQuick.Controls 2.12
 
+import "qrc:/qmluilib/list"
+
 /*
  * ClassName: VideoContentView
  * Desc: 内容内容页面
@@ -14,10 +16,16 @@ Item {
     width: parent.width
     height: parent.height
 
-    Rectangle {
+    FlowList {
+        id: flowListId
+
         width: parent.width
         height: parent.height
-        color: "#FF00FF"
+
+        onItemClick: function(itemId) {
+            console.log("VideoContentView onItemClick : " + itemId);
+            //flowListId.onCalContentHeight();
+        }
     }
 
     /*
@@ -27,6 +35,6 @@ Item {
      * Date: 2021-06-24 23:15
      */
     function onStart(listDatas) {
-        groupListId.onStart(listDatas);
+        flowListId.onStart(listDatas);
     }
 }

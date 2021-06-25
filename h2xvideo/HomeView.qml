@@ -266,9 +266,15 @@ Rectangle {
      * Date: 2021-06-20 11:19
      */
     function onInitContentList() {
-        let listDatas = NavbarData.getGroupListTestDatas();
-        console.log("HomeView.qml onInitContentList NavbarData.getGroupListTestDatas datas : " + JSON.stringify((listDatas)))
-        hotspotContentView.onStart(listDatas);
+        // 热点
+        let hotspotListDatas = NavbarData.getHotspotTestDatas();
+        console.log("HomeView.qml onInitContentList NavbarData.getGroupListTestDatas datas : " + JSON.stringify((hotspotListDatas)))
+        hotspotContentView.onStart(hotspotListDatas);
+
+        // 视频
+        let videoListDatas = NavbarData.getVideoTestListData();
+        console.log("HomeView.qml onInitContentList NavbarData.getVideoTestListData datas : " + JSON.stringify(videoListDatas));
+        videoContentView.onStart(videoListDatas);
     }
 
     /*

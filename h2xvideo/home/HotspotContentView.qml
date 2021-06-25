@@ -20,6 +20,10 @@ Item {
 
         width: parent.width
         height: parent.height
+
+        onItemClick: function(itemId) {
+            console.log("HotspotContentView onItemClick : " + itemId);
+        }
     }
 
     /*

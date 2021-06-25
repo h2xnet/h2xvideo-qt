@@ -95,9 +95,9 @@ function getBottomNavDatas() {
 }
 
 //
-// getGroupListTestDatas : 获取组列表测试数据
+// getHotspotTestDatas : 获取热点测试数据
 //
-function getGroupListTestDatas() {
+function getHotspotTestDatas() {
     let datas = [
         {
             groupId: 1,
@@ -156,6 +156,71 @@ function getGroupListTestDatas() {
                     updateTime: ""
                 }
             ]
+        }
+    ]
+
+    return datas;
+}
+
+/*
+ * FunctionName: getVideoTestListData
+ * Desc: 获取视频测试数据
+ * Author: zfs
+ * Date: 2021-06-25 21:52
+ */
+function getVideoTestListData() {
+    let datas = [
+        {
+            id: 4,
+            title: "007",
+            tag: "赌王",
+            star: 0,
+            desc: "经典系列",
+            source: "",
+            coverUrl: "https://pic5.iqiyipic.com/image/20210615/8e/a4/v_160107478_m_601_260_360.jpg?caplist=jpg,webp,avif",
+            createTime: "",
+            updateTime: "",
+            groupId: 2,
+            groupName: "电影"
+        },
+        {
+            id: 3,
+            title: "速度与激情",
+            tag: "动作",
+            star: 3,
+            desc: "经典美国动作大片",
+            source: "",
+            coverUrl: "https://pic4.iqiyipic.com/image/20210604/81/a4/v_159888228_m_601_320_180.jpg?caplist=jpg,webp,avif",
+            createTime: "",
+            updateTime: "",
+            groupId: 2,
+            groupName: "电影"
+        },
+        {
+            id: 1,
+            title: "武功山之行",
+            tag: "vlog",
+            star: 0,
+            desc: "美丽绿色武功山之行,一生值得一去的地方",
+            source: "",
+            coverUrl: "https://pic7.iqiyipic.com/image/20210621/55/94/v_160260694_m_601_480_270.jpg",
+            createTime: "",
+            updateTime: "",
+            groupId: 1,
+            groupName:"旅行"
+        },
+        {
+            id: 2,
+            title: "玉龙雪山",
+            tag: "景点",
+            star: 0,
+            desc: "丽江玉龙雪山",
+            source: "",
+            coverUrl: "https://pic9.iqiyipic.com/image/20210622/e6/a4/v_112846088_m_601_m3_260_360.jpg?caplist=jpg,webp,avif",
+            createTime: "",
+            updateTime: "",
+            groupId: 1,
+            groupName:"旅行"
         }
     ]
 
