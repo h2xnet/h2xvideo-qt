@@ -3,8 +3,8 @@
 #ifndef H2XBASE_THREAD_FRAMEWORK_THREAD_H_
 #define H2XBASE_THREAD_FRAMEWORK_THREAD_H_
 
-#include "thread.h"
-#include "thread_local.h"
+#include "h2xbase/thread/thread.h"
+#include "h2xbase/thread/thread_local.h"
 #include "h2xbase/task/message_loop.h"
 #include "h2xbase/sync/waitable_event.h"
 

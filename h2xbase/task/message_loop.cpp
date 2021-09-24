@@ -316,7 +316,7 @@ void MessageLoop::setNestableTasksAllowed(bool allowed) {
         pump_->scheduleWork();
     }
 }
-
+/*
 void MessageLoop::addDestructionObserver(DestructionObserver *observer) {
     assert(this == current());
     destruction_observers_.AddObserver(observer);
@@ -335,11 +335,11 @@ void MessageLoop::addTaskObserver(TaskObserver *observer) {
 void MessageLoop::removeTaskObserver(TaskObserver *observer) {
     assert(this == current());
     task_observers_.RemoveObserver(observer);
-}
+}*/
 
 void MessageLoop::preDestruct() {
     size_t index = 0;
-    DestructionObserver* observer;
+    /*DestructionObserver* observer;
     AutoLazyEraser lazy_eraser(&destruction_observers_);
     while (index < destruction_observers_.GetObserverCount())
     {
@@ -347,12 +347,12 @@ void MessageLoop::preDestruct() {
         if (observer == NULL)
             continue;
         observer->PreDestroyCurrentMessageLoop();
-    }
+    }*/
 }
 
 void MessageLoop::preProcessTask() {
     size_t index = 0;
-    TaskObserver* observer;
+    /*TaskObserver* observer;
     AutoLazyEraser lazy_eraser(&task_observers_);
     while (index < task_observers_.GetObserverCount())
     {
@@ -360,13 +360,13 @@ void MessageLoop::preProcessTask() {
         if (observer == NULL)
             continue;
         observer->preProcessTask();
-    }
+    }*/
     // NOT compact the observer list, here
 }
 
 void MessageLoop::postPrecessTask() {
     size_t index = 0;
-    TaskObserver* observer;
+    /*TaskObserver* observer;
     AutoLazyEraser lazy_eraser(&task_observers_);
     while (index < task_observers_.GetObserverCount())
     {
@@ -374,7 +374,7 @@ void MessageLoop::postPrecessTask() {
         if (observer == NULL)
             continue;
         observer->postProcessTask();
-    }
+    }*/
 }
 
 

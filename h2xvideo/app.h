@@ -4,6 +4,8 @@
 #include "h2xbase/logger/h2x_logger.h"
 #include "h2xcore/h2x_application.h"
 
+#include "api/h2xvideo_api.h"
+
 namespace h2x {
     
 class Logger;
@@ -11,6 +13,8 @@ class Config;
 class View;
 
 }
+
+class MainViewHandler;
 
 /*
  * ClassName : App
@@ -52,6 +56,8 @@ public:
     h2x::Logger& getLogger() {
         return logger_;
     }
+
+    MainViewHandler* getMainView();
 
 private:
     h2x::Logger logger_;

@@ -3,6 +3,8 @@ import QtQuick.Controls 2.12
 
 import "qrc:/qmluilib/list"
 
+import "../router.js" as Router
+
 /*
  * ClassName: HotspotContentView
  * Desc: 热点内容页面
@@ -23,6 +25,7 @@ Item {
 
         onItemClick: function(itemId) {
             console.log("HotspotContentView onItemClick : " + itemId);
+            Router.listItemRouter("HotspotContentView", itemId, "");
         }
     }
 

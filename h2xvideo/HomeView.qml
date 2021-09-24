@@ -179,6 +179,7 @@ Rectangle {
 
             width: parent.width - contentPadLeft - contentPadRight
             height: parent.height - contentPadTop - contentPadBottom
+
         }
 
         // 音频内容

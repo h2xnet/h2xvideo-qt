@@ -1,7 +1,6 @@
 #ifndef H2XCORE_H2X_MIDDLEWARE__H
 #define H2XCORE_H2X_MIDDLEWARE__H
 
-#include "h2xbase/task/task.h"
 #include "h2xcore/h2x_core_export.h"
 
 namespace h2x {

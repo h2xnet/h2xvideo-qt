@@ -21,6 +21,6 @@ function navPageRouter(sender, pageId, pageParam) {
  * @itemId: 项数据ID
  * @itemData: 项数据参数
  */
-function listItemRouter(sender, itemId, itemData) {
-
+function listItemRouter(sender, itemId, itemParam) {
+    mainViewHandler.routerSelectItemChangeEvent(sender, itemId, itemParam);
 }

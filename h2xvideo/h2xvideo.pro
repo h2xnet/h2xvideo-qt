@@ -23,20 +23,37 @@ INCLUDEPATH +=  ../ \
                 ../h2xcore \
                 ../bin  \
                 ../third_party  \
+                ../third_party/ffmpeg   \
+                ../third_party/ffmpeg/include   \
                 ../plugins
 
 CONFIG(debug, debug|release) {
 #debug active
-win32: LIBS += ../h2xbase/debug/h2xbase.lib
-win32: LIBS += ../h2xcore/debug/h2xcore.lib
+DESTDIR = $$PWD/../bin/debug
+
+win32: LIBS += $$PWD/../bin/debug/h2xbase.lib
+win32: LIBS += $$PWD/../bin/debug/h2xcore.lib
+
+win32: LIBS += $$PWD/../third_party/ffmpeg/lib/avformat.lib
+win32: LIBS += $$PWD/../third_party/ffmpeg/lib/avutil.lib
+win32: LIBS += $$PWD/../third_party/ffmpeg/lib/avcodec.lib
+
 }
 else {
 #release active
-win32: LIBS += ../h2xbase/release/h2xbase.lib
-win32: LIBS += ../h2xcore/release/h2xcore.lib
+DESTDIR = $$PWD/../bin/release
+
+win32: LIBS += $$PWD/../bin/release/h2xbase.lib
+win32: LIBS += $$PWD/../bin/release/h2xcore.lib
+
+win32: LIBS += $$PWD/../third_party/ffmpeg/lib/avformat.lib
+win32: LIBS += $$PWD/../third_party/ffmpeg/lib/avutil.lib
+win32: LIBS += $$PWD/../third_party/ffmpeg/lib/avcodec.lib
+
 }
 
 SOURCES += \
+        api/h2xvideo_api.cpp \
         app.cpp \
         app_cache.cpp \
         app_config.cpp \
@@ -58,6 +75,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
+    api/h2xvideo_api.h \
     app.h \
     app_cache.h \
     app_config.h \

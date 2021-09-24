@@ -11,7 +11,7 @@
 #include "h2xbase/thread/framework_thread.h"
 #include "h2xbase/memory/singleton.h"
 
-/**
+/*
  * 一些预定义的线程 ID 值，提供开发者使用
  */
 enum ThreadIds

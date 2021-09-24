@@ -22,11 +22,24 @@ App::~App() {
 
 }
 
+MainViewHandler* App::getMainView() {
+    static MainViewHandler* inst = NULL;
+
+    if (!inst) {
+        inst = MainViewHandler::qmlAttachedProperties(NULL);
+    }
+
+    return inst;
+}
+
 void App::registViews() {
     qmlRegisterType<MainViewHandler>("module.h2xvideo.mainviewhandler", 1, 0, "MainViewHandler");
 }
 
 void App::beforeStart() {
+    // 初始化库
+    int ret = init_library();
+
     // 注册页面控制类
     this->registViews();
 }

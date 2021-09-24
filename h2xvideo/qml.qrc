@@ -39,5 +39,12 @@
         <file>home/FocusContentView.qml</file>
         <file>home/VideoContentView.qml</file>
         <file>home/AudioContentView.qml</file>
+        <file>VideoView.qml</file>
+        <file>qmluilib/media/VideoPlayer.qml</file>
+        <file>qmluilib/media/AudioPlayer.qml</file>
+        <file>qmluilib/imgs/toolbar/sound_40.png</file>
+        <file>qmluilib/imgs/toolbar/sound_80.png</file>
+        <file>qmluilib/bar/ProgressBar.qml</file>
+        <file>qmluilib/bar/SliderBar.qml</file>
     </qresource>
 </RCC>

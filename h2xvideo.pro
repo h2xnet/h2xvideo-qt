@@ -3,4 +3,5 @@ TEMPLATE = subdirs
 SUBDIRS += \
     h2xbase \
     h2xcore \
-    h2xvideo
+    h2xvideo \
+    plugins/avcode

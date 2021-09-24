@@ -5,10 +5,10 @@
 #include <memory>
 #include <mutex>
 #include <queue>
+#include <assert.h>
 #include "h2xbase/task/callback.h"
 #include "h2xbase/task/message_pump.h"
 #include "h2xbase/h2x_base_export.h"
-#include "h2xbase/h2x_observer_list.h"
 #include "h2xbase/time/time.h"
 
 namespace h2x {
@@ -121,7 +121,7 @@ public:
     void removeDestructionObserver(DestructionObserver *observer);
 
     // 任务观察者，每个任务被处理前和处理后均会通知这些观察者
-    class H2XBASE_EXPORT TaskObserver
+    /*class H2XBASE_EXPORT TaskObserver
     {
     public:
         virtual void preProcessTask() {}
@@ -132,7 +132,7 @@ public:
     };
 
     void addTaskObserver(TaskObserver* observer);
-    void removeTaskObserver(TaskObserver* observer);
+    void removeTaskObserver(TaskObserver* observer);*/
 
     struct RunState {
         int run_depth;
@@ -257,9 +257,9 @@ protected:
     // 最近一次调用TimeTicks::Now方法的时间
     TimeTicks recent_tick_;
     // 任务观察者列表
-    ObserverList<TaskObserver> task_observers_;
+    //ObserverList<TaskObserver> task_observers_;
     // MessageLoop销毁观察者列表
-    ObserverList<DestructionObserver> destruction_observers_;
+    //ObserverList<DestructionObserver> destruction_observers_;
 
     // The message loop proxy associated with this message loop, if one exists.
     std::shared_ptr<MessageLoopProxy> message_loop_proxy_;

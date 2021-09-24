@@ -37,6 +37,10 @@ public:
 
     virtual bool isOpen() = 0;
 
+    virtual int getErrorCode() {    return 0;   }
+
+    virtual const char* getErrorMsg() const {   return NULL;    }
+
 };
 
 } // end namespace h2x

@@ -27,8 +27,21 @@ win32: LIBS += user32.lib
 INCLUDEPATH +=  ../ \
                 ../third_party
 
+CONFIG(debug, debug|release) {
+#debug active
+DESTDIR = $$PWD/../bin/debug
+
+}
+else {
+#release active
+DESTDIR = $$PWD/../bin/release
+
+
+}
+
 SOURCES += \
     crash/crash_win.cpp \
+    error.cpp \
     file/file.cpp \
     file/file_path.cpp \
     h2xbase.cpp \
@@ -40,10 +53,14 @@ SOURCES += \
     sync/semaphore_win.cpp \
     sync/waitable_event_win.cpp \
     task/default_message_pump.cpp \
+    task/event.cpp \
+    task/event_loop.cpp \
     task/message_loop.cpp \
     task/message_loop_proxy.cpp \
     task/message_pump.cpp \
+    task/observer.cpp \
     thread/framework_thread.cpp \
+    thread/plugin_thread.cpp \
     thread/thread_local_win.cpp \
     thread/thread_manager.cpp \
     thread/thread_win.cpp \
@@ -55,6 +72,7 @@ HEADERS += \
     btype.h \
     crash/crash_handler.h \
     crash/crash_win.h \
+    error.h \
     file/file.h \
     file/file_path.h \
     h2x_base_export.h \
@@ -76,13 +94,17 @@ HEADERS += \
     sync/waitable_event.h \
     task/callback.h \
     task/default_message_pump.h \
+    task/event.h \
+    task/event_id.h \
+    task/event_loop.h \
     task/message_loop.h \
     task/message_loop_proxy.h \
     task/message_pump.h \
-    task/task.h \
+    task/observer.h \
     third_party/chrome/atomicops.h \
     third_party/chrome/atomicops_internals_x86_msvc.h \
     thread/framework_thread.h \
+    thread/plugin_thread.h \
     thread/thread.h \
     thread/thread_local.h \
     thread/thread_manager.h \

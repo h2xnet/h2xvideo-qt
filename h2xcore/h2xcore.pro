@@ -29,11 +29,15 @@ INCLUDEPATH +=  ../ \
 
 CONFIG(debug, debug|release) {
 #debug active
-win32: LIBS += ../h2xbase/debug/h2xbase.lib
+DESTDIR = $$PWD/../bin/debug
+
+win32: LIBS += $$PWD/../bin/debug/h2xbase.lib
 }
 else {
 #release active
-win32: LIBS += ../h2xbase/release/h2xbase.lib
+DESTDIR = $$PWD/../bin/release
+
+win32: LIBS += $$PWD/../bin/release/h2xbase.lib
 }
 
 SOURCES += \

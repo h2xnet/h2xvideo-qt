@@ -12,6 +12,11 @@ namespace h2x {
 enum ErrorCode {
     ERROR_CODE_SUCCESS = 0, // 成功
     ERROR_CODE_FAIL = 1, // 失败
+    ERROR_CODE_PARAM_ERROR = 3, // 参数错误
+    ERROR_CODE_ALLOC_FAIL = 4, // 内在分配失败
+    ERROR_CODE_NOT_VALID = 5, // 值无效
+    ERROR_CODE_NOT_OPEN = 6, // 没有打开
+    ERROR_CODE_OPEN_FAIL = 7, // 打开失败
 };
 
 //

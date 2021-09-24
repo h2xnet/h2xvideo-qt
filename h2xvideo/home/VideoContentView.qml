@@ -3,6 +3,8 @@ import QtQuick.Controls 2.12
 
 import "qrc:/qmluilib/list"
 
+import "../router.js" as Router
+
 /*
  * ClassName: VideoContentView
  * Desc: 内容内容页面
@@ -24,7 +26,7 @@ Item {
 
         onItemClick: function(itemId) {
             console.log("VideoContentView onItemClick : " + itemId);
-            //flowListId.onCalContentHeight();
+            Router.listItemRouter("VideoContentView", itemId, "");
         }
     }
 

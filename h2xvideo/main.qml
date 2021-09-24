@@ -27,7 +27,6 @@ Window {
     width: 1024 // Screen.desktopAvailableWidth
     height: 668 // Screen.desktopAvailableHeight
 
-
     title: qsTr("慧行无限视频")
 
     //
@@ -94,6 +93,14 @@ Window {
         pageParam: ""
     }
 
+    //
+    // VideoView : 视频页面
+    //
+    VideoView {
+        id: videoViewId
+        visible: false;
+    }
+
     Component.onCompleted: {
         console.log("main.qml Component.onCompleted.")
         // 初始化导航栏
@@ -125,6 +132,7 @@ Window {
             }
             console.log("main.qml MainViewHandler.onRouterPageChangeEvent params: " + JSON.stringify(paramObj));
 
+            // 底部导航栏显示标志
             let bottomNavBarShow = true;
 
             if (pageId === "home") {
@@ -146,6 +154,23 @@ Window {
                 routerStack.setReplece(myView, pageId, pageParam);
             }
             bottomNavBar.onShowHide(bottomNavBarShow);
+
+        }
+
+        // 选择项改变事件
+        onRouterSelectItemChangeEvent: function(sender, itemId, itemParam) {
+            console.log("main.qml MainViewHandler.onRouterSelectItemChangeEvent.");
+            let paramObj = {
+                sender: sender,
+                pageId: itemId,
+                pageParam: itemParam
+            }
+            console.log("main.qml MainViewHandler.onRouterSelectItemChangeEvent params: " + JSON.stringify(paramObj));
+
+            if (sender === "HotspotContentView" || sender === "VideoContentView") {
+                // 打开视频页面
+                videoViewId.onStart();
+            }
 
         }
 

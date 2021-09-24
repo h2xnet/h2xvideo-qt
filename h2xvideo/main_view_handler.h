@@ -6,6 +6,8 @@
 #include <qstring.h>
 #include <QtQml>
 
+class App;
+
 class MainViewHandler : public QObject, public h2x::View {
     Q_OBJECT
 public:
@@ -63,9 +65,20 @@ Q_SIGNALS:
      * Date: 2021-06-12 22:35
      * @sender: 发送者
      * @pageId: 页面ID
-     * @pageParam: 页面参数，可以为空，
+     * @pageParam: 页面参数，可以为空，为了保证兼容与扩展性，不为空时最好传递JSON字符串
      */
     void routerPageChangeEvent(QString sender, QString pageId, QString pageParam = QString(""));
+
+    /*
+     * FunctionName: routerSelectItemChangeEvent
+     * Desc: 页面内容选中项改变事件
+     * Author: zfs
+     * Date: 2021-07-06 22:15
+     * @sender: 发送者
+     * @itemId: 项ID
+     * @itemParam: 项参数，可以为空，为了保证兼容与扩展性，不为空时最好传递JSON字符串
+     */
+    void routerSelectItemChangeEvent(QString sender, QString itemId, QString itemParam = QString(""));
 
 
 
