@@ -53,6 +53,7 @@ bool AvcodeFfmpeg::open(const char* fileName, size_t fileNameSize, void* param) 
         return false;
     }
 
+    // 第四个参数用来填充AVFormatContext一些字段以及Demuxer的private选项
     last_code_ = avformat_open_input(&inputAvFmtCtx_, fileName, (AVInputFormat*)param, &options_);
     if (last_code_ != 0) {
         last_code_ = ERROR_CODE_FAIL;
@@ -100,6 +101,8 @@ bool AvcodeFfmpeg::OnInputStreamValid() {
         return false;
     }
 
+    // 查找流信息（获取更多流信息）
+    // avformat_find_stream_info主要用来获取必要的CODEC参数，设置到inputAvFmtCtx_->streams[i]->codec
     int status = avformat_find_stream_info(inputAvFmtCtx_, NULL);
 
     return status == 0 ? true : false;

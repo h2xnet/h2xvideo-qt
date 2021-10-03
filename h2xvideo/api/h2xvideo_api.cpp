@@ -15,6 +15,9 @@ int init_library() {
     // 初始化网络环境，推流时需要（ffmpeg）
     ret = avformat_network_init();
 
+    // 注册所有
+    //av_register_all();
+
     return ret;
 }
 

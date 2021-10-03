@@ -63,10 +63,10 @@ public:
      * Date: 2021-09-23 22:24
      * @fileName: 要打开的文件名称（可以是本地文件，也可以是网络文件）
      * @fileNameSize: 文件名大小
-     * @param:打开参数，可以为空
+     * @param: 输入文件格式，可以为空，如果为空，则自动检测输入文件格式
      * 返回值：成功返回true，失败返回false
      */
-    virtual bool open(const char* fileName, size_t fileNameSize, void* param = 0) override;
+    virtual bool open(const char* fileName, size_t fileNameSize, void* param = nullptr) override;
 
     /*
      * Function: close
